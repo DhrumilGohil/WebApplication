@@ -1,0 +1,291 @@
+﻿@model EmployeeForm.Models.Employee
+@using EmployeeForm.Models
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="witdh=device-witdh, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Css/Style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid" style="border:0px solid;">
+        <div class="row">
+            @Html.Partial("Sidebar")
+            <div class="col-lg-10">
+                    <div class="row justify-content-center" style="border:0px solid;">
+                        <div class="col-lg-12 d-block text-center">
+                            <h1 class="Header" style="border:0px solid;">Detail of Employee</h1>
+                        </div>
+                    </div>
+
+                    <table class="detail">
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.FirstName)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.FirstName)
+                            </td>
+
+                            <td>
+                                @Html.DisplayNameFor(model => model.MiddleName)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.MiddleName)
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                @Html.DisplayNameFor(model => model.LastName)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.LastName)
+                            </td>
+
+                            <td>
+                                @Html.DisplayNameFor(model => model.Gender)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.Gender)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </td>
+                            ]
+
+                            <td>
+                                @Html.DisplayFor(model => model.Email)
+                            </td>
+
+                            <td>
+                                @Html.DisplayNameFor(model => model.PresentAddress)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.PresentAddress)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.PresentDistrictID)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.PresentDistrictID)
+                            </td>
+
+                            <td>
+                                @Html.DisplayNameFor(model => model.PresentTalukaID)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.PresentTalukaID)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.PresentPINCODE)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.PresentPINCODE)
+                            </td>
+
+                            <td>
+                                @Html.DisplayNameFor(model => model.NativeAddress)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.NativeAddress)
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                @Html.DisplayNameFor(model => model.NativeDistrictID)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.NativeDistrictID)
+                            </td>
+
+                            <td>
+                                @Html.DisplayNameFor(model => model.NativeTalukaID)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.NativeTalukaID)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.NativePINCODE)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.NativePINCODE)
+                            </td>
+
+                            <td>
+                                @Html.DisplayNameFor(model => model.PhoneNumber)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.PhoneNumber)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.AlternatePhoneNumber)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.AlternatePhoneNumber)
+                            </td>
+
+                            <td>
+                                @Html.DisplayNameFor(model => model.EmergencyContactNumber)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.EmergencyContactNumber)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.EmergencyContactName)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.EmergencyContactName)
+                            </td>
+
+                            <td>
+                                @Html.DisplayNameFor(model => model.DateOfBirth)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.DateOfBirth)
+                            </td>
+                           
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Dateofjoin)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Dateofjoin)
+                            </td>
+
+                            <td>
+                                @Html.DisplayNameFor(model => model.DateofRetirement)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.DateofRetirement)
+                            </td>                            
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.DistrictJoiningDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.DistrictJoiningDate)
+                            </td>
+
+                            <td>
+                                @Html.DisplayNameFor(model => model.EmployeeEntryinDistrict)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.EmployeeEntryinDistrict)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.EmployeeType)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.EmployeeType)
+                            </td>
+
+                            <td>
+                                @Html.DisplayNameFor(model => model.AgencyID)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.AgencyID)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.CreatedBy)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.CreatedBy)
+                            </td>
+
+                            <td>
+                                @Html.DisplayNameFor(model => model.CreatedDate)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.CreatedDate)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.UpdatedBy)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.UpdatedBy)
+                            </td>
+
+                            <td>
+                                @Html.DisplayNameFor(model => model.UpdatedDate)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.UpdatedDate)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.isActive)
+                            </td>
+                            <td>
+                                @if (Model.isActive == false)
+                                {
+                                @Html.Label("NO")
+                                }
+                                else
+                                {
+                                @Html.Label("YES")
+                                }
+                            </td>
+
+                        </tr>
+</table>
+                </div>
+            </div>
+    </div>
+</body>
+</html>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

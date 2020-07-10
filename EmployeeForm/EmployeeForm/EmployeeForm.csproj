@@ -297,6 +297,9 @@
     <Content Include="Views\Employee\EmployeeJobDetails.cshtml" />
     <Content Include="Views\Employee\ShowAllEmployee.cshtml" />
     <Content Include="Views\Employee\EditEmp.cshtml" />
+    <Content Include="Views\Employee\DetailS.cshtml" />
+    <Content Include="Views\Employee\Taluka.cshtml" />
+    <Content Include="Views\Employee\District.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

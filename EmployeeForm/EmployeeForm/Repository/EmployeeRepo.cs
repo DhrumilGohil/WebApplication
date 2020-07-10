@@ -109,6 +109,7 @@ namespace EmployeeForm.Repository
             com.Parameters.AddWithValue("@UpdatedDate", DateTime.Now.ToString());
             com.Parameters.AddWithValue("@isActive", 1);
             int i = com.ExecuteNonQuery();
+            con.Close();
             if (i > 0)
             {
                 return true;
@@ -157,6 +158,7 @@ namespace EmployeeForm.Repository
             com.Parameters.AddWithValue("@UpdatedDate", DateTime.Now.ToString());
             com.Parameters.AddWithValue("@isActive", 1);
             int i = com.ExecuteNonQuery();
+            con.Close();
             if (i > 0)
             {
                 return true;
@@ -166,7 +168,6 @@ namespace EmployeeForm.Repository
                 return false;
             }
         }
-
         public List<int> GetAllDistrict()
         {
             List<int> Districts = new List<int>();
@@ -195,14 +196,14 @@ namespace EmployeeForm.Repository
             com.Parameters.AddWithValue("@DistrictID", DistrictID);
             DataTable dt = new DataTable();
             SqlDataReader read = com.ExecuteReader();
-            while(read.Read())
+             while(read.Read())
             {
                 Console.WriteLine(read["TalukaID"]);
                 Talukas.Add(Convert.ToInt32(read["TalukaID"]));
             }
             return Talukas;
 
-        }
+        } 
 
         public List<int> GetAllAgency()
         {
@@ -224,116 +225,7 @@ namespace EmployeeForm.Repository
 
     }
 
-    /* public List<Employee> GetAllEmployee()
-         {
-             string constr = ConfigurationManager.ConnectionStrings["EmpConnect"].ConnectionString;
-             SqlConnection con = new SqlConnection(constr);
-             con.Open();
-             List<Employee> EmpList = new List<Employee>();
-             SqlCommand com =new SqlCommand("GetEmployees", con);
-             com.CommandType = CommandType.StoredProcedure;
-             SqlDataAdapter da = new SqlDataAdapter(com);
-             DataTable dt = new DataTable();
-             da.Fill(dt);
-
-             foreach(DataRow dr in dt.Rows)
-             {
-                 EmpList.Add(
-
-                     new Employee
-                    {
-                         EmployeeID = Convert.ToInt32(dr["EmployeeID"]),
-                         FirstName = Convert.ToString(dr["FirstName"]),
-                         MiddleName = Convert.ToString(dr["MiddleName"]),
-                         LastName = Convert.ToString(dr["LastName"]),
-                         Native = Convert.ToString(dr["Native"]),
-                         Gender =(dr["Gender"].ToString()),
-                         Email = Convert.ToString(dr["Email"]),
-                         PresentAddress = Convert.ToString(dr["PresentAddress"]),
-                         PermanentAddress = Convert.ToString(dr["PermanentAddress"]),
-                         NativeAddress = Convert.ToString(dr["NativeAddress"]),
-                         PhoneNumber = Convert.ToString(dr["PhoneNumber"]),
-                         AlternatePhoneNumber = Convert.ToString(dr["AlternatePhoneNumber"]),
-                         EmergencyContactNumber = Convert.ToString(dr["EmergencyContactNumber"]),
-                         AdharNumber = Convert.ToString(dr["AdharNumber"]),
-                         DateOfBirth = Convert.ToDateTime(dr["DateOfBirth"]),
-                         Dateofjoin = Convert.ToDateTime(dr["DateOfJoin"]),
-                         DateofRetirement = Convert.ToDateTime(dr["DateofRetirement"]),
-                         DistrictJoiningDate = Convert.ToDateTime(dr["DistrictJoiningDate"]),
-                         EmployeeEntryinDistrict =Convert.ToString(dr["EmployeeEntryinDistrict"]),
-                         Designation = (Convert.ToString(dr["Designation"])),
-                         Department =Convert.ToString((dr["Department"])),
-                         CurrentAllocation = Convert.ToString(dr["CurrentAllocation"]),
-                         EmployeeCurrentStatus = Convert.ToString(dr["EmployeeCurrentStatus"]),
-                         SuspendFromService = Convert.ToBoolean(dr["SuspendedFromService"]),
-                         Comment = Convert.ToString(dr["Comments"]),
-                         isActive = Convert.ToBoolean(dr["isActive"]),
-                     }
-
-                     ); 
-             }
-
-             return EmpList;
-
-
-         }
-
-         public bool UpdateEmp(Employee obj)
-         {
-             string constr = ConfigurationManager.ConnectionStrings["EmpConnect"].ConnectionString;
-             SqlConnection con = new SqlConnection(constr);
-             con.Open();
-             SqlCommand com = new SqlCommand("UpdateEmployee", con);
-             com.CommandType = CommandType.StoredProcedure;
-             com.Parameters.AddWithValue("@EmployeeID", obj.EmployeeID);
-             com.Parameters.AddWithValue("@FirstName", obj.FirstName);
-             com.Parameters.AddWithValue("@LastName", obj.LastName);
-             com.Parameters.AddWithValue("@MiddleName", obj.MiddleName);
-             com.Parameters.AddWithValue("@Gender", obj.Gender);
-             com.Parameters.AddWithValue("@Native", obj.Native);
-             com.Parameters.AddWithValue("@Email", obj.Email);
-             com.Parameters.AddWithValue("@PresentAddress", obj.PresentAddress);
-             com.Parameters.AddWithValue("@NativeAddress", obj.NativeAddress);
-             com.Parameters.AddWithValue("@PermanentAddress", obj.PermanentAddress);
-             com.Parameters.AddWithValue("@PhoneNumber", obj.PhoneNumber);
-             com.Parameters.AddWithValue("@AlternatePhoneNumber", obj.AlternatePhoneNumber);
-             com.Parameters.AddWithValue("@EmergencyContactNumber", obj.EmergencyContactNumber);
-             com.Parameters.AddWithValue("@AdharNumber", obj.AdharNumber);
-             com.Parameters.AddWithValue("@DateOfBirth", obj.DateOfBirth);
-             com.Parameters.AddWithValue("@Dateofjoin", obj.Dateofjoin);
-             com.Parameters.AddWithValue("@DateofRetirement", obj.DateofRetirement);
-             com.Parameters.AddWithValue("@DistrictJoiningDate", obj.DistrictJoiningDate);
-             com.Parameters.AddWithValue("@EmployeeEntryinDistrict", obj.EmployeeEntryinDistrict);
-             com.Parameters.AddWithValue("@Designation", obj.Designation);
-             com.Parameters.AddWithValue("@Department", obj.Department);
-             com.Parameters.AddWithValue("@CurrentAllocation", obj.CurrentAllocation);
-             com.Parameters.AddWithValue("@EmployeeCurrentStatus", obj.EmployeeCurrentStatus);
-             if (obj.SuspendFromService == false)
-             {
-                 com.Parameters.AddWithValue("@SuspendedFromService", 0);
-             }
-             else
-             {
-                 com.Parameters.AddWithValue("@SuspendedFromService", 1);
-             }
-             com.Parameters.AddWithValue("@Comments", obj.Comment);
-             com.Parameters.AddWithValue("@isActive", obj.isActive);
-             com.ExecuteNonQuery();
-
-             int i = com.ExecuteNonQuery();
-             con.Close();
-             if (i > 0)
-             {
-                 return true;
-             }
-             else
-             {
-                 return false;
-             }
-
-         }
-
-         public bool deleteEmployee(int EmployeeId)
+    /* public bool deleteEmployee(int EmployeeId)
          {
              string constr = ConfigurationManager.ConnectionStrings["EmpConnect"].ConnectionString;
              SqlConnection con = new SqlConnection(constr);

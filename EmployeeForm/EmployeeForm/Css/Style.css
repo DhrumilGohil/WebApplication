@@ -17,6 +17,9 @@ h2 {
     font-weight:bold;
     font-size:3vw;
 }
+.detail td:nth-child(odd){
+    color:red;  
+}
 .sidebar {
     background-color: #4e73df;
 }
@@ -28,6 +31,7 @@ li.a{
 }
 th,tr,td {
     text-align:center;
+    padding-top:10px;
 }
 a {
     color:white;

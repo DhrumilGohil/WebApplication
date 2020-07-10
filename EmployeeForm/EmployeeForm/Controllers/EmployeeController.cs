@@ -48,11 +48,11 @@ namespace EmployeeForm.Controllers
                 EmpRepository Emprepo = new EmpRepository();
                 if (Emprepo.AddEmployee(Emp))
                 {
-                    return View();
+                    return RedirectToAction("ShowAllEmployee");
                 }
                 else
                 {
-                    return View("Error");
+                    return RedirectToAction("Error");
                 }
 
             }
@@ -65,7 +65,7 @@ namespace EmployeeForm.Controllers
         {
             EmpRepository Emprepo = new EmpRepository();
             return View(Emprepo.GetAllEmployee().Find(Emp => Emp.EmployeeID == id));
-        }
+        }                      
 
         // POST: Employee/Edit/5
         [HttpPost]
@@ -86,7 +86,7 @@ namespace EmployeeForm.Controllers
                 EmpRepository Emprepo = new EmpRepository();
                 if (Emprepo.UpdateEmp(Emp))
                 {
-                    return View();
+                    return RedirectToAction("ShowAllEmployee");
                 }
                 else
                 {
@@ -117,6 +117,38 @@ namespace EmployeeForm.Controllers
             List<int> Agencies = Emprepo.GetAllAgency();
             return Json(Agencies,JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult DetailS(int id)
+        {
+            EmpRepository Emprepo = new EmpRepository();
+            ModelState.Clear();
+            return View(Emprepo.GetAllEmployee().Find(emp => emp.EmployeeID == id));
+        }
+
+        public ActionResult EmpActive(int id)
+        {
+            EmpRepository Emprepo = new EmpRepository();
+            string constr = ConfigurationManager.ConnectionStrings["EmpConnect"].ConnectionString;
+            SqlConnection con = new SqlConnection(constr);
+            con.Open();
+            SqlCommand com = new SqlCommand("ISACTIVE", con);
+            com.CommandType = CommandType.StoredProcedure;
+            com.Parameters.AddWithValue("@EmployeeID", id);
+            com.Parameters.AddWithValue("@isActive", 0);
+            int i = com.ExecuteNonQuery();
+            con.Close();
+            if (i > 0)
+            {
+                return RedirectToAction("ShowAllEmployee");
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+
+        }
+
+
         public ActionResult MehkamDetail()
         {
             return View();
@@ -133,6 +165,15 @@ namespace EmployeeForm.Controllers
         }
 
         public ActionResult EmployeeJobDetails()
+        {
+            return View();
+        }
+
+        public ActionResult Taluka()
+        {
+            return View();
+        }
+        public ActionResult District()
         {
             return View();
         }

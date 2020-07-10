@@ -120,6 +120,8 @@
 
                                 @foreach (var item in Model)
                                 {
+                                  if(item.isActive == true)
+                                  {
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.FirstName)
@@ -201,7 +203,7 @@
     </td>
     <td>
 
-        @if (item.isActive == false)
+        if (item.isActive == false)
         {
             @Html.Label("NO")
         }
@@ -212,24 +214,25 @@
 
     </td>-->
                                 <td>
-                                    <a href="@Url.Action("EditEmp", "Employee",new {id = item.EmployeeID })" class="btn btn-primary">
+                                    <a href="@Url.Action("EditEmp", "Employee", new { id = item.EmployeeID })" class="btn btn-primary">
                                          Edit
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="@Url.Action("Details", "Employee",new {id =item.EmployeeID })" class="btn btn-danger">
+                                    <a href="@Url.Action("Details", "Employee", new { id = item.EmployeeID })" class="btn btn-danger">
                                         Details
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="@Url.Action("ShowAllEmployee", "Employee",new {id = item.EmployeeID })" class="btn btn-success">
+                                    <a href="@Url.Action("EmpActive", "Employee", new { id = item.EmployeeID })" class="btn btn-success">
                                         IsActive
                                     </a>
                                 </td>
                             </tr>
+                                  }
                                 }
-
                             </table>
+                                
                         </div>
                     </div>
                 </div>
