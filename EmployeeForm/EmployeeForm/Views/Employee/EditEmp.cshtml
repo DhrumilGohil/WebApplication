@@ -1,0 +1,319 @@
+﻿@model EmployeeForm.Models.Employee
+@using EmployeeForm.Models
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Css/Style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid" style="border:0px solid;">
+        <div class="row">
+            @Html.Partial("Sidebar")
+            <div class="col-lg-10">
+
+                @using (Html.BeginForm("EditEmp", "Employee"))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="row justify-content-center" style="border:0px solid;">
+                        <div class="col-lg-12 d-block text-center">
+                            <h1 class="Header" style="border:0px solid;">Edit Employee</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            @Html.TextBox("Search", "", new { PlaceHolder = "Search...", @class = "form-control searchbox mt-5" })
+                            <button class="btn btn-success px-4 sbtn mt-5">Search</button>
+                        </div>
+                    </div>
+                    <div class="form-box mt-5 pl-5">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row mt-5">
+                                    <div class="col-lg-4 mt-5">
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { PlaceHolder = "Enter First Name", @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 mt-5">
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { PlaceHolder = "Enter Middle Name", @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 mt-5">
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { PlaceHolder = "Enter Last Name", @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-end">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.DropDownList("EmployeeType", new SelectList(Enum.GetValues(typeof(EmpType))), "Employee Type", new { @class = "form-control EmployeeType" })
+                                            @Html.ValidationMessageFor(model => model.EmployeeType, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { PlaceHolder = "Enter Your Email", @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.DropDownList("Gender", new SelectList(Enum.GetValues(typeof(Gender))), "Choose Gender", new { @class = "form-control Gender" })
+                                            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.PresentAddress, new { htmlAttributes = new { PlaceHolder = "Enter Present Address", @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.PresentAddress, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.DropDownList("PresentDistrictID", Enumerable.Empty<SelectListItem>(), "Present DistrictID", new { @class = "form-control District" })
+                                            @Html.ValidationMessageFor(model => model.PresentDistrictID, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.DropDownList("PresentTalukaID", Enumerable.Empty<SelectListItem>(), "Present TalukaID", new { @class = "form-control PresentTaluka" })
+                                            @Html.ValidationMessageFor(model => model.PresentTalukaID, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.PresentPINCODE, new { htmlAttributes = new { PlaceHolder = "Enter Present PINCODE", @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.PresentPINCODE, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.NativeAddress, new { htmlAttributes = new { PlaceHolder = "Enter Native Address", @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.NativeAddress, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.DropDownList("NativeDistrictID", Enumerable.Empty<SelectListItem>(), "Native DistrictID", new { @class = "form-control NativeDistrict" })
+                                            @Html.ValidationMessageFor(model => model.NativeDistrictID, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.DropDownList("NativeTalukaID", Enumerable.Empty<SelectListItem>(), "Native TalukaID", new { @class = "form-control NativeTaluka" })
+                                            @Html.ValidationMessageFor(model => model.NativeTalukaID, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.NativePINCODE, new { htmlAttributes = new { PlaceHolder = "Enter Native PINCODE", @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.NativeAddress, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { PlaceHolder = "Enter Phone Number", @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.AlternatePhoneNumber, new { htmlAttributes = new { PlaceHolder = "Enter Alternate Phone Number", @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.AlternatePhoneNumber, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.EmergencyContactNumber, new { htmlAttributes = new { PlaceHolder = "Emergency Phone Number", @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.EmergencyContactNumber, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.EmergencyContactName, new { htmlAttributes = new { PlaceHolder = "Emergency ContactName", @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.EmergencyContactName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control DOB" } })
+                                            @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.Dateofjoin, new { htmlAttributes = new { @class = "form-control DOJ" } })
+                                            @Html.ValidationMessageFor(model => model.Dateofjoin, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.DateofRetirement, new { htmlAttributes = new { @class = "form-control DOR" } })
+                                            @Html.ValidationMessageFor(model => model.DateofRetirement, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.DistrictJoiningDate, new { htmlAttributes = new { @class = "form-control DODJ" } })
+                                            @Html.ValidationMessageFor(model => model.DistrictJoiningDate, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.DropDownList("EmployeeEntryinDistrict", new SelectList(Enum.GetValues(typeof(EmployeeEntry))), "Employee Entry", new { @class = "form-control EmpEntry" })
+                                            @Html.ValidationMessageFor(model => model.EmployeeEntryinDistrict, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.DropDownList("AgencyID", Enumerable.Empty<SelectListItem>(), "AgencyID", new { PlaceHolder = "Agency ID", @class = "form-control Agency" })
+                                            @Html.ValidationMessageFor(model => model.AgencyID, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.CreatedBy, new { htmlAttributes = new { PlaceHolder = "Created By", @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            @Html.EditorFor(model => model.UpdatedBy, new { htmlAttributes = new { placeholder = "Updated By", @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.UpdatedBy, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-content-center mt-3">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4 text-center">
+                            <div class="form-control">
+                                <button type="submit" class="btn btn-primary px-5 w-75 font-weight-bold">Submit</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-4"></div>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        var options = "";
+        $.ajax({
+            url: "/Employee/GetAllAgencies",
+            type: "GET",
+            datatype: "json",
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    options = '<option value="' + data[i] + '">' + data[i] + '</option>';
+                    $(".Agency").append(options);
+                }
+            },
+            error: function (e) {
+                alert(e.statusText);
+            }
+        });
+
+        $.ajax({
+            url: "/Employee/GetAllDistrict",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    options = '<option value="' + data[i] + '">' + data[i] + '</option>';
+                    $(".District").append(options);
+                    $(".NativeDistrict").append(options);
+                }
+            },
+            error: function (e) {
+                alert(e.statusText);
+            }
+        });
+
+
+
+        $(".District").change(function () {
+            var DistrictID = $(".District").val();
+            //alert(DistrictID);
+            var options = '';
+            $.ajax({
+                url: "/Employee/GetAllTalukas",
+                type: "GET",
+                data: {'Empid' : DistrictID},
+                dataType: "json",
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        options = '<option value="' + data[i] + '">' + data[i] + '</option>';
+                        $(".PresentTaluka").append(options);
+                    }
+                },
+                error: function (e) {
+                    alert(e.statusText);
+                }
+            });
+        });
+
+
+        $(".NativeDistrict").change(function () {
+            var DistrictID = $(".NativeDistrict").val();
+            //alert(DistrictID); new SelectList((System.Collections.IEnumerable)ViewData["District"])
+            var options = '';
+            $.ajax({
+                url: "/Employee/GetAllTalukas",
+                type: "GET",
+                data: { 'Empid': DistrictID },
+                dataType: "json",
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        options = '<option value="' + data[i] + '">' + data[i] + '</option>';
+                        $(".NativeTaluka").append(options);
+                    }
+                },
+                error: function (e) {
+                    alert(e.statusText);
+                }
+            });
+        });
+    });
+</script>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
