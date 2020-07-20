@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Web;
 using System.Web.WebSockets;
@@ -14,7 +15,7 @@ namespace EmployeeForm.Repository
 {
     public class EmpRepository
     {
-        public List<Employee> GetAllEmployee()
+        public List<Employee> GetAllEmployee([Optional] int EmployeeID)
         {
             string constr = ConfigurationManager.ConnectionStrings["EmpConnect"].ConnectionString;
             SqlConnection con = new SqlConnection(constr);
@@ -22,6 +23,7 @@ namespace EmployeeForm.Repository
             List<Employee> EmpList = new List<Employee>();
             SqlCommand com = new SqlCommand("GetEmployees", con);
             com.CommandType = CommandType.StoredProcedure;
+            com.Parameters.AddWithValue("@EmployeeID", EmployeeID);
             SqlDataAdapter da = new SqlDataAdapter(com);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -30,7 +32,7 @@ namespace EmployeeForm.Repository
             {
                 EmpList.Add(
 
-                    new Employee
+                    new Employee()
                     {
                         EmployeeID = Convert.ToInt32(dr["EmployeeID"]),
                         FirstName = Convert.ToString(dr["FirstName"]),
@@ -104,9 +106,9 @@ namespace EmployeeForm.Repository
             com.Parameters.AddWithValue("@EmployeeType", obj.EmployeeType);
             com.Parameters.AddWithValue("@AgencyID", obj.AgencyID);
             com.Parameters.AddWithValue("@CreatedBy", obj.CreatedBy);
-            com.Parameters.AddWithValue("@CreatedDate", DateTime.Now.ToString());
+            com.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
             com.Parameters.AddWithValue("@UpdatedBy", obj.UpdatedBy);
-            com.Parameters.AddWithValue("@UpdatedDate", DateTime.Now.ToString());
+            com.Parameters.AddWithValue("@UpdatedDate", DateTime.Now);
             com.Parameters.AddWithValue("@isActive", 1);
             int i = com.ExecuteNonQuery();
             con.Close();
@@ -153,9 +155,9 @@ namespace EmployeeForm.Repository
             com.Parameters.AddWithValue("@EmployeeType", obj.EmployeeType);
             com.Parameters.AddWithValue("@AgencyID", obj.AgencyID);
             com.Parameters.AddWithValue("@CreatedBy", obj.CreatedBy);
-            com.Parameters.AddWithValue("@CreatedDate", DateTime.Now.ToString());
+            com.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
             com.Parameters.AddWithValue("@UpdatedBy", obj.UpdatedBy);
-            com.Parameters.AddWithValue("@UpdatedDate", DateTime.Now.ToString());
+            com.Parameters.AddWithValue("@UpdatedDate", DateTime.Now);
             com.Parameters.AddWithValue("@isActive", 1);
             int i = com.ExecuteNonQuery();
             con.Close();
@@ -168,9 +170,9 @@ namespace EmployeeForm.Repository
                 return false;
             }
         }
-        public List<int> GetAllDistrict()
+        public List<string> GetAllDistrict()
         {
-            List<int> Districts = new List<int>();
+            List<string> Districts = new List<string>();
             string constr = ConfigurationManager.ConnectionStrings["EmpConnect"].ConnectionString;
             SqlConnection con = new SqlConnection(constr);
             con.Open();
@@ -180,14 +182,14 @@ namespace EmployeeForm.Repository
             SqlDataReader read = com.ExecuteReader();
             while (read.Read())
             {
-                Districts.Add(Convert.ToInt32(read["DistrictID"]));
+                Districts.Add(Convert.ToString(read["DistrictName"]));
             }
 
             return Districts; 
         }
 
-        public List<int> GetAllTaluka(int DistrictID) {
-            List<int> Talukas = new List<int>();
+        public List<string> GetAllTaluka(int DistrictID) {
+            List<string> Talukas = new List<string>();
             string constr = ConfigurationManager.ConnectionStrings["EmpConnect"].ConnectionString;
             SqlConnection con = new SqlConnection(constr);
             con.Open();
@@ -198,16 +200,16 @@ namespace EmployeeForm.Repository
             SqlDataReader read = com.ExecuteReader();
              while(read.Read())
             {
-                Console.WriteLine(read["TalukaID"]);
-                Talukas.Add(Convert.ToInt32(read["TalukaID"]));
+                Console.WriteLine(read["TalukaName"]);
+                Talukas.Add(Convert.ToString(read["TalukaName"]));
             }
             return Talukas;
 
         } 
 
-        public List<int> GetAllAgency()
+        public List<string> GetAllAgency()
         {
-            List<int> Agencies = new List<int>();
+            List<string> Agencies = new List<string>();
             string constr = ConfigurationManager.ConnectionStrings["EmpConnect"].ConnectionString;
             SqlConnection con = new SqlConnection(constr);
             con.Open();
@@ -217,7 +219,7 @@ namespace EmployeeForm.Repository
             SqlDataReader read = com.ExecuteReader();
             while(read.Read())
             {               
-                Agencies.Add(Convert.ToInt32(read["AgencyID"]));
+                Agencies.Add(Convert.ToString(read["AgencyName"]));
             }
             return Agencies;
 

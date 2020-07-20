@@ -15,7 +15,8 @@ namespace EmployeeForm.Models
         [Required(ErrorMessage = "First name is required.")]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
-       
+        [RegularExpression("^([a-zA-Z]+)$", ErrorMessage = "Invalid First Name")]
+
         [Display(Name = "Middle Name")]
         public string MiddleName { get; set; }
         [RegularExpression("^([a-zA-Z]+)$", ErrorMessage = "Invalid Last Name")]
@@ -34,16 +35,29 @@ namespace EmployeeForm.Models
         [Required(ErrorMessage = "Present Address is required.")]
         [Display(Name = "Present Address")]
         public string PresentAddress { get; set; }
+        [Required(ErrorMessage = "Present DistrictID is required.")]
+        [Display(Name = "Present DistrictID")]
         public int PresentDistrictID { get; set; }
+        [Required(ErrorMessage = "Present TalukaID is required.")]
+        [Display(Name = "Present TalukaID")]
         public int PresentTalukaID { get; set; }
         [DataType(DataType.PostalCode)]
+        [Required(ErrorMessage = "Present Pincode is required.")]
+        [Display(Name = "Present Pincode")]
         public int PresentPINCODE { get; set; }
 
         [Display(Name = "Native Address")]
         public string NativeAddress { get; set; }
+        [Required(ErrorMessage = "Native DistrictID is required.")]
+        [Display(Name = "Native DistrictID")]
         public int NativeDistrictID { get; set; }
+        [Required(ErrorMessage = "Native TalukaID is required.")]
+        [Display(Name = "Native TalukaID")]
+
         public int NativeTalukaID { get; set; }
         [DataType(DataType.PostalCode)]
+        [Required(ErrorMessage = "Native Pincode is required.")]
+        [Display(Name = "Native Pincode")]
         public int NativePINCODE { get; set; }
 
         [DataType(DataType.PhoneNumber)]
@@ -58,6 +72,8 @@ namespace EmployeeForm.Models
         [Required(ErrorMessage = "Emeregency Phone Number is required.")]
         [Display(Name = "Emeregency Number")]
         public string EmergencyContactNumber { get; set; }
+        [Required(ErrorMessage = "Enter Emergency Contact Name")]
+        [Display(Name = "Emergency Contact Name")]
         public string EmergencyContactName { get; set; }
        
         [Required(ErrorMessage = "Date of Birth is required.")]
@@ -78,6 +94,7 @@ namespace EmployeeForm.Models
         [Display(Name = "Employee Entry in District")]
         [Required(ErrorMessage = "Employee Entry Date is required.")]
         public string EmployeeEntryinDistrict { get; set; }
+        [Required(ErrorMessage ="Select AgencyID")]
         public string EmployeeType { get; set; }
         public int AgencyID { get; set; }
         public int CreatedBy { get; set; }

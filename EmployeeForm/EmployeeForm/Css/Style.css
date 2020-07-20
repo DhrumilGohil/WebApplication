@@ -2,7 +2,7 @@
 body {
     padding: 0;
     margin: 0;
-    background-color: rgba(0,0,0,0);
+    background: linear-gradient(-90deg,white,rgba(0,0,0,0.2))
 }
 .box {
     background-color: white;
@@ -22,9 +22,22 @@ h2 {
 }
 .sidebar {
     background-color: #4e73df;
+    padding:0;
 }
-li.a{
-    color:white;
+li a{
+    color: lightgoldenrodyellow;
+    text-decoration:none!important;
+}
+li a:hover {
+    transition:0.1s ease;
+    font-weight:bold;
+    color: white!important;
+}
+a {
+    text-decoration:none!important;
+}
+.Divider {
+    background-color:white;
 }
 .Linkbtn {
     color: white;
@@ -32,18 +45,24 @@ li.a{
 th,tr,td {
     text-align:center;
     padding-top:10px;
+    border:1px solid gray;
 }
-a {
-    color:white;
+
+.TableBox  {
+    box-shadow: 0px 5px 10px 5px gray;
+}
+.Admin {
+    font-size:30px;
 }
 
 .form-box {
-    background-color:lightblue;
-    box-shadow:0px 0px 15px 0px gray;
+    background-color: lightblue;
+    box-shadow: 0px 0px 15px 0px gray;
+    position: absolute;
+    width: 100%;
+    left: 0 !important;
 }
-.col-lg-10 {
-    background-color:rgba(0,0,0,0.09);
-}
+
 .searchbox {
     position: absolute;
     right: 0;
@@ -57,17 +76,8 @@ a {
     font-family:Georgia;
     font-weight:bold;
 }
-.sbtn {
-    position: absolute;
-    right: 0;
-    margin-right: 15px;
-    margin-top: 2px;
+.submit {
+   z-index:1;
 }
-.btn-danger {
-    width:100%;
-    height:40px;
-}
-.Admin {
-    font-size:30px;
-    color:white;
-}
+
+

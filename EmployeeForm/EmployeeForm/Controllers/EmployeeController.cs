@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data;
 using Microsoft.Ajax.Utilities;
+using System.Runtime.InteropServices.ComTypes;
+using System.Runtime.InteropServices;
 
 namespace EmployeeForm.Controllers
 {
@@ -64,7 +66,18 @@ namespace EmployeeForm.Controllers
         public ActionResult EditEmp(int id)
         {
             EmpRepository Emprepo = new EmpRepository();
-            return View(Emprepo.GetAllEmployee().Find(Emp => Emp.EmployeeID == id));
+            List<Employee> test = new List<Employee>();
+            test = Emprepo.GetAllEmployee(id);
+            foreach (var item in test)
+            {
+                ViewBag.Emptype = item.EmployeeType;
+                ViewBag.District = item.PresentDistrictID;
+                ViewBag.Taluka = item.PresentTalukaID;
+                ViewBag.Ndistrict = item.NativeDistrictID;
+                ViewBag.Ntaluka = item.NativeTalukaID;
+                ViewBag.Agency = item.AgencyID;
+            }
+            return View(Emprepo.GetAllEmployee(id));
         }                      
 
         // POST: Employee/Edit/5
@@ -100,21 +113,21 @@ namespace EmployeeForm.Controllers
         public JsonResult GetAllDistrict()
         {
             EmpRepository Emprepo = new EmpRepository();
-            List<int> Districts = Emprepo.GetAllDistrict().ToList();            
+            List<string> Districts = Emprepo.GetAllDistrict().ToList();            
             return Json(Districts, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public JsonResult GetAllTalukas(int Empid)
         {
             EmpRepository Emprepo = new EmpRepository();
-            List<int> Talukas = Emprepo.GetAllTaluka(Empid);            
+            List<string> Talukas = Emprepo.GetAllTaluka(Empid);            
             return Json(Talukas, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public JsonResult GetAllAgencies()
         {
             EmpRepository Emprepo = new EmpRepository();
-            List<int> Agencies = Emprepo.GetAllAgency();
+            List<string> Agencies = Emprepo.GetAllAgency();
             return Json(Agencies,JsonRequestBehavior.AllowGet);
         }
 
@@ -122,7 +135,7 @@ namespace EmployeeForm.Controllers
         {
             EmpRepository Emprepo = new EmpRepository();
             ModelState.Clear();
-            return View(Emprepo.GetAllEmployee().Find(emp => emp.EmployeeID == id));
+            return View(Emprepo.GetAllEmployee(id));
         }
 
         public ActionResult EmpActive(int id)
@@ -142,12 +155,21 @@ namespace EmployeeForm.Controllers
                 return RedirectToAction("ShowAllEmployee");
             }
             else
-            {
+            { 
                 return RedirectToAction("Error");
             }
 
         }
 
+        public ActionResult search(string Search)
+        {
+            EmpRepository Emprepo = new EmpRepository();
+            List<Employee> test = new List<Employee>();
+            test = Emprepo.GetAllEmployee();
+
+
+            return View(test.Where(x=> x.FirstName.Contains(Search)).ToList());
+        }
 
         public ActionResult MehkamDetail()
         {
@@ -162,7 +184,7 @@ namespace EmployeeForm.Controllers
         public ActionResult Agency()
         {
             return View();
-        }
+        }          
 
         public ActionResult EmployeeJobDetails()
         {
@@ -174,6 +196,31 @@ namespace EmployeeForm.Controllers
             return View();
         }
         public ActionResult District()
+        {
+            return View();
+        }
+
+        public ActionResult Exam()
+        {
+            return View();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+        }
+
+        public ActionResult EmployeeExam()
+        {
+            return View();
+        }
+
+        public ActionResult Office()
+        {
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        public ActionResult Designation()
         {
             return View();
         }

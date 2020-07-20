@@ -1,4 +1,4 @@
-﻿@model EmployeeForm.Models.Employee
+﻿@model IEnumerable<EmployeeForm.Models.Employee>
 @using EmployeeForm.Models
 
 <!DOCTYPE html>
@@ -16,20 +16,22 @@
         <div class="row">
             @Html.Partial("Sidebar")
             <div class="col-lg-10">
-                    <div class="row justify-content-center" style="border:0px solid;">
-                        <div class="col-lg-12 d-block text-center">
-                            <h1 class="Header" style="border:0px solid;">Detail of Employee</h1>
-                        </div>
+                <div class="row justify-content-center" style="border:0px solid;">
+                    <div class="col-lg-12 d-block text-center">
+                        <h1 class="Header" style="border:0px solid;">Detail of Employee</h1>
                     </div>
+                </div>
 
-                    <table class="detail">
+                <table class="detail">
+                    @foreach (var item in Model)
+                    {
                         <tr>
                             <td>
                                 @Html.DisplayNameFor(model => model.FirstName)
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.FirstName)
+                                @Html.DisplayFor(m => item.FirstName)
                             </td>
 
                             <td>
@@ -37,7 +39,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.MiddleName)
+                                @Html.DisplayFor(model => item.MiddleName)
                             </td>
                         </tr>
                         <tr>
@@ -47,7 +49,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.LastName)
+                                @Html.DisplayFor(model => item.LastName)
                             </td>
 
                             <td>
@@ -55,7 +57,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.Gender)
+                                @Html.DisplayFor(model => item.Gender)
                             </td>
                         </tr>
                         <tr>
@@ -65,7 +67,7 @@
                             ]
 
                             <td>
-                                @Html.DisplayFor(model => model.Email)
+                                @Html.DisplayFor(model => item.Email)
                             </td>
 
                             <td>
@@ -73,7 +75,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.PresentAddress)
+                                @Html.DisplayFor(model => item.PresentAddress)
                             </td>
                         </tr>
                         <tr>
@@ -82,7 +84,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.PresentDistrictID)
+                                @Html.DisplayFor(model => item.PresentDistrictID)
                             </td>
 
                             <td>
@@ -90,7 +92,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.PresentTalukaID)
+                                @Html.DisplayFor(model => item.PresentTalukaID)
                             </td>
                         </tr>
                         <tr>
@@ -99,7 +101,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.PresentPINCODE)
+                                @Html.DisplayFor(model => item.PresentPINCODE)
                             </td>
 
                             <td>
@@ -107,7 +109,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.NativeAddress)
+                                @Html.DisplayFor(model => item.NativeAddress)
                             </td>
                         </tr>
                         <tr>
@@ -117,7 +119,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.NativeDistrictID)
+                                @Html.DisplayFor(model => item.NativeDistrictID)
                             </td>
 
                             <td>
@@ -125,7 +127,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.NativeTalukaID)
+                                @Html.DisplayFor(model => item.NativeTalukaID)
                             </td>
                         </tr>
                         <tr>
@@ -134,7 +136,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.NativePINCODE)
+                                @Html.DisplayFor(model => item.NativePINCODE)
                             </td>
 
                             <td>
@@ -142,7 +144,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.PhoneNumber)
+                                @Html.DisplayFor(model => item.PhoneNumber)
                             </td>
                         </tr>
                         <tr>
@@ -151,7 +153,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.AlternatePhoneNumber)
+                                @Html.DisplayFor(model => item.AlternatePhoneNumber)
                             </td>
 
                             <td>
@@ -159,7 +161,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.EmergencyContactNumber)
+                                @Html.DisplayFor(model => item.EmergencyContactNumber)
                             </td>
                         </tr>
                         <tr>
@@ -168,7 +170,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.EmergencyContactName)
+                                @Html.DisplayFor(model => item.EmergencyContactName)
                             </td>
 
                             <td>
@@ -176,16 +178,16 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.DateOfBirth)
+                                @Html.DisplayFor(model => item.DateOfBirth)
                             </td>
-                           
+
                         </tr>
                         <tr>
                             <td>
                                 @Html.DisplayNameFor(model => model.Dateofjoin)
                             </td>
                             <td>
-                                @Html.DisplayFor(model => model.Dateofjoin)
+                                @Html.DisplayFor(model => item.Dateofjoin)
                             </td>
 
                             <td>
@@ -193,15 +195,15 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.DateofRetirement)
-                            </td>                            
+                                @Html.DisplayFor(model => item.DateofRetirement)
+                            </td>
                         </tr>
                         <tr>
                             <td>
                                 @Html.DisplayNameFor(model => model.DistrictJoiningDate)
                             </td>
                             <td>
-                                @Html.DisplayFor(model => model.DistrictJoiningDate)
+                                @Html.DisplayFor(model => item.DistrictJoiningDate)
                             </td>
 
                             <td>
@@ -209,7 +211,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.EmployeeEntryinDistrict)
+                                @Html.DisplayFor(model => item.EmployeeEntryinDistrict)
                             </td>
                         </tr>
                         <tr>
@@ -218,7 +220,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.EmployeeType)
+                                @Html.DisplayFor(model => item.EmployeeType)
                             </td>
 
                             <td>
@@ -226,7 +228,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.AgencyID)
+                                @Html.DisplayFor(model => item.AgencyID)
                             </td>
                         </tr>
                         <tr>
@@ -235,7 +237,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.CreatedBy)
+                                @Html.DisplayFor(model => item.CreatedBy)
                             </td>
 
                             <td>
@@ -243,7 +245,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.CreatedDate)
+                                @Html.DisplayFor(model => item.CreatedDate)
                             </td>
                         </tr>
                         <tr>
@@ -252,7 +254,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.UpdatedBy)
+                                @Html.DisplayFor(model => item.UpdatedBy)
                             </td>
 
                             <td>
@@ -260,7 +262,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(model => model.UpdatedDate)
+                                @Html.DisplayFor(model => item.UpdatedDate)
                             </td>
                         </tr>
                         <tr>
@@ -268,24 +270,24 @@
                                 @Html.DisplayNameFor(model => model.isActive)
                             </td>
                             <td>
-                                @if (Model.isActive == false)
+                                @if ( item.isActive == false)
                                 {
-                                @Html.Label("NO")
+                                    @Html.Label("NO")
                                 }
                                 else
                                 {
-                                @Html.Label("YES")
+                                    @Html.Label("YES")
                                 }
                             </td>
 
                         </tr>
-</table>
-                </div>
+                    }
+                    </table>
             </div>
+        </div>
     </div>
 </body>
 </html>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
