@@ -1,0 +1,75 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<EmployeeForm.Models.Taluka>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid-lg">
+        <h1 class="text-center">List of Taluka's</h1>
+        <div class="row">
+            @Html.Partial("Sidebar")
+            <div class="col-lg-10 TableBox mb-3 p-5">
+                <br>
+                <table class="table" border="2">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().TalukaID)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().TalukaName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().DistrictID)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().CreatedBy)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().CreatedDate)
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TalukaID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TalukaName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DistrictID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedBy)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedDate)
+                            </td>
+                        </tr>
+
+                    }
+
+                </table>
+                <div class="row mt-3 text-center">
+                    <div class="col-lg-4"></div>
+                    <div class="col-lg-4">
+                        <div class="pagebox">
+                            @Html.PagedListPager(Model, page => Url.Action("ShowListTaluka", new { page }))
+                        </div>
+                    </div>
+                    <div class="col-lg-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
