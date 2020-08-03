@@ -1,0 +1,67 @@
+﻿@model IEnumerable<EmployeeForm.Models.Exam>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of agency</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale = 1.0">
+</head>
+<body>
+    <div class="container-fluid-xl">
+        <div class="row text-center">
+            @Html.Partial("Sidebar")
+            <div class="col-lg-10">
+                <div class="Header">
+                    List Of Agnecy
+                </div>
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ExamID)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ExamName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CreatedBy)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CreatedDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UpdatedBy)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UpdatedDate)
+                        </th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(showitem => item.ExamID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(showitem => item.ExamName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(showitem => item.CreatedBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(showitem => item.CreatedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(showitem => item.UpdatedBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(showitem => item.UpdatedDate)
+                    </td>
+                </tr>
+                    }
+                </table>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

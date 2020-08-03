@@ -1,4 +1,4 @@
-﻿@model EmployeeForm.Models.District
+﻿@model EmployeeForm.Models.Agency
 
 <!DOCTYPE html>
 <html>
@@ -10,54 +10,52 @@
     <link href="~/Css/Style.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid-lg">
         <div class="row">
             @Html.Partial("Sidebar")
             <div class="col-lg-2"></div>
             <div class="col-lg-6">
-                @using (Html.BeginForm())
+                @using (Html.BeginForm("AddAgency","Employee"))
                 {
                     @Html.AntiForgeryToken()
                     <div class="row justify-content-center" style="border:0px solid;">
                         <div class="col-lg-12 d-block text-center">
-                            <h1 class="Header" style="border:0px solid;">District Form</h1>
+                            <h1 class="Header" style="border:0px solid;">Agency Form</h1>
                         </div>
                     </div>
                     <div class="form-box pb-2 mb-3">
                         <div class="form-horizontal">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group">
-                                @Html.LabelFor(model => model.DistrictName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.AgencyName, htmlAttributes: new { @class = "control-label ml-3" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.DistrictName, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.DistrictName, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.AgencyName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.AgencyName, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.CreatedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.CreatedBy, htmlAttributes: new { @class = "control-label ml-3" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="submit text-center ">
-                                <button type="submit" class="btn btn-primary font-weight-bold p-2 px-5 mx-auto mt-5">Submit</button>
+                                <input type="submit" class="btn btn-primary font-weight-bold p-2 px-5 mx-auto mt-5">
                             </div>
                         </div>
                     </div>
-                   
-                }
-            </div>
-            <div class="col-lg-2"></div>
-        </div>
+                                         
+                        }
+                    </div>
+                    <div class="col-lg-2"></div>
+                </div>
     </div>
 
 </body>
 </html>
 
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-

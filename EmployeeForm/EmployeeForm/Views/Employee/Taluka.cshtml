@@ -5,61 +5,69 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+   
     <link href="~/Css/Style.css" rel="stylesheet" />
 </head>
 <body>
     <div class="container-fluid-lg">
         <div class="row">
             @Html.Partial("Sidebar")
-            <div class="col-lg-2"></div>
-            <div class="col-lg-6">
+            <div class="col-lg-10">
+
+
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
-                    <div class="row justify-content-center" style="border:0px solid;">
-                        <div class="col-lg-12 d-block text-center">
-                            <h1 class="Header" style="border:0px solid;">Taluka Form</h1>
-                        </div>
-                    </div>
-                    <div class="form-box pb-2 mb-3">
-                        <div class="form-horizontal">
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.TalukaName, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.TalukaName, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.TalukaName, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.CreatedBy, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="submit text-center ">
-                                    <button type="submit" class="btn btn-primary font-weight-bold p-2 px-5 mx-auto mt-5">Submit</button>
+                    <h1 class="Header text-center" style="border:0px solid;">Taluka Form</h1>
+                    <div class="row">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-box pt-5 mt-3">
+                                <div class="row align-items-center">
+                                    <div class="col-md-5 ">
+                                        <div class="side-img" style="border:0px solid">
+                                            <img src="~/Content/images/gujarat.png" class="img-fluid"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 " style="border: 0px solid;">
+                                        <div class="form-horizontal">
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.TalukaName, htmlAttributes: new { @class = "control-label ml-3" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.TalukaName, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.TalukaName, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.CreatedBy, htmlAttributes: new { @class = "control-label ml-3" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="submit text-center ">
+                                                <button type="submit" class="btn btn-primary font-weight-bold p-2 px-5 mx-auto mt-5">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
                                 </div>
                             </div>
+                            <div class="col-md-2"></div>
                         </div>
-                    </div>
-                    <div class="row">
-            
                     </div>
                 }
             </div>
-            <div class="col-lg-2"></div>
+               
         </div>
     </div>
 
 </body>
 </html>
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -6,9 +6,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")    
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Css/Style.css" rel="stylesheet" />
 </head>
 <body>
@@ -82,15 +84,15 @@
 
                         <div class="row">
                             <div class="col-lg-6 mt-5">
-                                @Html.LabelFor(model => model.PresentAddress, new { @class = "ml-1 font-weight-bold" })
                                 <div class="form-group">
+                                    @Html.LabelFor(model => model.PresentAddress, new { @class = "ml-1 font-weight-bold" })
                                     @Html.TextAreaFor(model => model.PresentAddress, new { @rows = "3", @cols = "10", PlaceHolder = "Enter Present Address", @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.PresentAddress, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="col-lg-6 mt-5">
-                                @Html.LabelFor(model => model.PresentDistrictID, new { @class = "ml-1 font-weight-bold" })
                                 <div class="form-group">
+                                @Html.LabelFor(model => model.PresentDistrictID, new { @class = "ml-1 font-weight-bold" })
                                     @Html.DropDownList("PresentDistrictID", Enumerable.Empty<SelectListItem>(), "Present DistrictID", new { @class = "form-control District" })
                                     @Html.ValidationMessageFor(model => model.PresentDistrictID, "", new { @class = "text-danger" })
                                 </div>
@@ -99,15 +101,15 @@
 
                         <div class="row">
                             <div class="col-lg-6 mt-5">
-                                @Html.LabelFor(model => model.PresentTalukaID, new { @class = "ml-1 font-weight-bold" })
                                 <div class="form-group">
+                                @Html.LabelFor(model => model.PresentTalukaID, new { @class = "ml-1 font-weight-bold" })
                                     @Html.DropDownList("PresentTalukaID", Enumerable.Empty<SelectListItem>(), "Present TalukaID", new { @class = "form-control PresentTaluka" })
                                     @Html.ValidationMessageFor(model => model.PresentTalukaID, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="col-lg-6 mt-5">
-                                @Html.LabelFor(model => model.PresentPINCODE, new { @class = "ml-1 font-weight-bold" })
                                 <div class="form-group">
+                                @Html.LabelFor(model => model.PresentPINCODE, new { @class = "ml-1 font-weight-bold" })
                                     @Html.EditorFor(model => model.PresentPINCODE, new { htmlAttributes = new { PlaceHolder = "Enter Present PINCODE", @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.PresentPINCODE, "", new { @class = "text-danger" })
                                 </div>
@@ -116,15 +118,15 @@
 
                         <div class="row">
                             <div class="col-lg-6 mt-5">
-                                @Html.LabelFor(model => model.NativeAddress, new { @class = "ml-1 font-weight-bold" })
                                 <div class="form-group">
+                                @Html.LabelFor(model => model.NativeAddress, new { @class = "ml-1 font-weight-bold" })
                                     @Html.TextAreaFor(model => model.NativeAddress, new { @rows = "3", @cols = "10", PlaceHolder = "Enter Native Address", @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.NativeAddress, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="col-lg-6 mt-5">
-                                @Html.LabelFor(model => model.NativeDistrictID, new { @class = "ml-1 font-weight-bold" })
                                 <div class="form-group">
+                                @Html.LabelFor(model => model.NativeDistrictID, new { @class = "ml-1 font-weight-bold" })
                                     @Html.DropDownList("NativeDistrictID", Enumerable.Empty<SelectListItem>(), "Native DistrictID", new { @class = "form-control NativeDistrict" })
                                     @Html.ValidationMessageFor(model => model.NativeDistrictID, "", new { @class = "text-danger" })
                                 </div>
@@ -133,15 +135,15 @@
 
                         <div class="row">
                             <div class="col-lg-6 mt-5">
-                                @Html.LabelFor(model => model.NativeTalukaID, new { @class = "ml-1 font-weight-bold" })
                                 <div class="form-group">
+                                @Html.LabelFor(model => model.NativeTalukaID, new { @class = "ml-1 font-weight-bold" })
                                     @Html.DropDownList("NativeTalukaID", Enumerable.Empty<SelectListItem>(), "Native TalukaID", new { @class = "form-control NativeTaluka" })
                                     @Html.ValidationMessageFor(model => model.NativeTalukaID, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="col-lg-6 mt-5">
-                                @Html.LabelFor(model => model.NativePINCODE, new { @class = "ml-1 font-weight-bold" })
                                 <div class="form-group">
+                                @Html.LabelFor(model => model.NativePINCODE, new { @class = "ml-1 font-weight-bold" })
                                     @Html.EditorFor(model => model.PresentPINCODE, new { htmlAttributes = new { PlaceHolder = "Enter Native PINCODE", @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.PresentPINCODE, "", new { @class = "text-danger" })
                                 </div>
@@ -153,15 +155,15 @@
 
                         <div class="row">
                             <div class="col-lg-6 mt-5">
-                                @Html.LabelFor(model => model.PhoneNumber, new { @class = "ml-1 font-weight-bold" })
                                 <div class="form-group">
+                                @Html.LabelFor(model => model.PhoneNumber, new { @class = "ml-1 font-weight-bold" })
                                     @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { PlaceHolder = "Enter Phone Number", @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="col-lg-6 mt-5">
-                                @Html.LabelFor(model => model.AlternatePhoneNumber, new { @class = "ml-1 font-weight-bold" })
                                 <div class="form-group">
+                                @Html.LabelFor(model => model.AlternatePhoneNumber, new { @class = "ml-1 font-weight-bold" })
                                     @Html.EditorFor(model => model.AlternatePhoneNumber, new { htmlAttributes = new { PlaceHolder = "Enter Alternate Number", @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.AlternatePhoneNumber, "", new { @class = "text-danger" })
                                 </div>
@@ -170,15 +172,15 @@
 
                         <div class="row">
                             <div class="col-lg-6 mt-5">
-                                @Html.LabelFor(model => model.EmergencyContactNumber, new { @class = "ml-1 font-weight-bold" })
                                 <div class="form-group">
+                                @Html.LabelFor(model => model.EmergencyContactNumber, new { @class = "ml-1 font-weight-bold" })
                                     @Html.EditorFor(model => model.EmergencyContactNumber, new { htmlAttributes = new { PlaceHolder = "Emergency Phone Number", @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.EmergencyContactNumber, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="col-lg-6 mt-5">
-                                @Html.LabelFor(model => model.EmergencyContactName, new { @class = "ml-1 font-weight-bold" })
                                 <div class="form-group">
+                                @Html.LabelFor(model => model.EmergencyContactName, new { @class = "ml-1 font-weight-bold" })
                                     @Html.EditorFor(model => model.EmergencyContactName, new { htmlAttributes = new { PlaceHolder = "Emergency ContactName", @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.EmergencyContactName, "", new { @class = "text-danger" })
                                 </div>
@@ -187,15 +189,15 @@
 
                         <div class="row">
                             <div class="col-lg-6 mt-5">
-                                @Html.LabelFor(model => model.DateOfBirth, new { @class = "ml-1 font-weight-bold" })
                                 <div class="form-group">
+                                @Html.LabelFor(model => model.DateOfBirth, new { @class = "ml-1 font-weight-bold" })
                                     @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control DOB" } })
                                     @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="col-lg-6 mt-5">
-                                @Html.LabelFor(model => model.Dateofjoin, new { @class = "ml-1 font-weight-bold" })
                                 <div class="form-group">
+                                @Html.LabelFor(model => model.Dateofjoin, new { @class = "ml-1 font-weight-bold" })
                                     @Html.EditorFor(model => model.Dateofjoin, new { htmlAttributes = new { @class = "form-control DOJ" } })
                                     @Html.ValidationMessageFor(model => model.Dateofjoin, "", new { @class = "text-danger" })
                                 </div>
@@ -204,15 +206,15 @@
 
                         <div class="row">
                             <div class="col-lg-6 mt-5">
-                                @Html.LabelFor(model => model.DateofRetirement, new { @class = "ml-1 font-weight-bold" })
                                 <div class="form-group">
+                                @Html.LabelFor(model => model.DateofRetirement, new { @class = "ml-1 font-weight-bold" })
                                     @Html.EditorFor(model => model.DateofRetirement, new { htmlAttributes = new { @class = "form-control DOR" } })
                                     @Html.ValidationMessageFor(model => model.DateofRetirement, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="col-lg-6 mt-5">
-                                @Html.LabelFor(model => model.DistrictJoiningDate, new { @class = "ml-1 font-weight-bold" })
                                 <div class="form-group">
+                                @Html.LabelFor(model => model.DistrictJoiningDate, new { @class = "ml-1 font-weight-bold" })
                                     @Html.EditorFor(model => model.DistrictJoiningDate, new { htmlAttributes = new { @class = "form-control DODJ" } })
                                     @Html.ValidationMessageFor(model => model.DistrictJoiningDate, "", new { @class = "text-danger" })
                                 </div>
@@ -221,15 +223,15 @@
 
                         <div class="row">
                             <div class="col-lg-6 mt-5">
-                                @Html.LabelFor(model => model.EmployeeEntryinDistrict, new { @class = "ml-1 font-weight-bold" })
                                 <div class="form-group">
+                                @Html.LabelFor(model => model.EmployeeEntryinDistrict, new { @class = "ml-1 font-weight-bold" })
                                     @Html.DropDownList("EmployeeEntryinDistrict", new SelectList(Enum.GetValues(typeof(EmployeeEntry))), "Employee Entry", new { @class = "form-control EmpEntry" })
                                     @Html.ValidationMessageFor(model => model.EmployeeEntryinDistrict, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="col-lg-6 mt-5">
-                                @Html.LabelFor(model => model.AgencyID, new { @class = "ml-1 font-weight-bold" })
                                 <div class="form-group">
+                                @Html.LabelFor(model => model.AgencyID, new { @class = "ml-1 font-weight-bold" })
                                     @Html.DropDownList("AgencyID", Enumerable.Empty<SelectListItem>(), "AgencyID", new { PlaceHolder = "Agency ID", @class = "form-control Agency" })
                                     @Html.ValidationMessageFor(model => model.AgencyID, "", new { @class = "text-danger" })
                                 </div>
@@ -238,15 +240,15 @@
 
                         <div class="row">
                             <div class="col-lg-6 mt-5">
-                                @Html.LabelFor(model => model.CreatedBy, new { @class = "ml-1 font-weight-bold" })
                                 <div class="form-group">
+                                @Html.LabelFor(model => model.CreatedBy, new { @class = "ml-1 font-weight-bold" })
                                     @Html.EditorFor(model => model.CreatedBy, new { htmlAttributes = new { PlaceHolder = "Created By", @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="col-lg-6 mt-5">
-                                @Html.LabelFor(model => model.UpdatedBy, new { @class = "ml-1 font-weight-bold" })
                                 <div class="form-group">
+                                @Html.LabelFor(model => model.UpdatedBy, new { @class = "ml-1 font-weight-bold" })
                                     @Html.EditorFor(model => model.UpdatedBy, new { htmlAttributes = new { placeholder = "Updated By", @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.UpdatedBy, "", new { @class = "text-danger" })
                                 </div>
@@ -277,7 +279,7 @@
             datatype: "json",
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {                    
-                    options = '<option value="' + (i + 1)+ '">' + data[i] + '</option>';
+                    options = '<option value="' + data[i]["AgencyID"]+ '">' + data[i]["AgencyName"] + '</option>';
                     $(".Agency").append(options);
                 }
             },

@@ -20,22 +20,22 @@ namespace EmployeeForm.Controllers
     public class EmployeeController : Controller
     {
         // GET: Employee
-         public ActionResult ShowAllEmployee(int? page,string Search)
-         {
-             EmpRepository EmpRepo = new EmpRepository();
-             ModelState.Clear();
+        public ActionResult ShowAllEmployee(int? page, string Search)
+        {
+            EmpRepository EmpRepo = new EmpRepository();
+            ModelState.Clear();
             List<Employee> test = new List<Employee>();
             test = EmpRepo.GetAllEmployee(0).ToList();
-            if (Search!= null){ 
-                test = test.Where(x => x.FirstName.Contains(Search) ||  x.LastName.Contains(Search)).ToList(); 
+            if (Search != null) {
+                test = test.Where(x => x.FirstName.Contains(Search) || x.LastName.Contains(Search)).ToList();
             }
-            return View(test.ToPagedList(page ?? 1,3));
-         }
+            return View(test.ToPagedList(page ?? 1, 3));
+        }
 
 
         // GET: Employee/Create
         public ActionResult AddEmp()
-        {            
+        {
             return View();
         }
 
@@ -77,7 +77,7 @@ namespace EmployeeForm.Controllers
             List<Employee> EditEmployee = new List<Employee>();
             EditEmployee = Emprepo.GetAllEmployee(id);
             return View(EditEmployee);
-        }                      
+        }
 
         // POST: Employee/Edit/5
         [HttpPost]
@@ -112,25 +112,31 @@ namespace EmployeeForm.Controllers
         public JsonResult GetAllDistrict()
         {
             EmpRepository Emprepo = new EmpRepository();
-            List<District> Districts = Emprepo.GetAllDistrict().ToList();            
+            List<District> Districts = Emprepo.GetAllDistrict().ToList();
             return Json(Districts, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public JsonResult GetAllTalukas(int Empid)
         {
             EmpRepository Emprepo = new EmpRepository();
-            List<Taluka> Talukas = Emprepo.GetAllTaluka(Empid);            
+            List<Taluka> Talukas = Emprepo.GetAllTaluka(Empid);
             return Json(Talukas, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public JsonResult GetAllAgencies()
         {
             EmpRepository Emprepo = new EmpRepository();
-            List<string> Agencies = Emprepo.GetAllAgency();
-            return Json(Agencies,JsonRequestBehavior.AllowGet);
+            List<Agency> Agencies = Emprepo.GetAllAgency();
+            return Json(Agencies, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult DetailS(int id)
+        public JsonResult GetAllEmployeeName()
+        {
+            EmpRepository Emprepo = new EmpRepository();
+            List<Employee> NameEmployee = Emprepo.GetAllEmployee(0).ToList();
+            return Json(NameEmployee, JsonRequestBehavior.AllowGet);
+        }
+       public ActionResult DetailS(int id)
         {
             EmpRepository Emprepo = new EmpRepository();
             ModelState.Clear();
@@ -154,7 +160,7 @@ namespace EmployeeForm.Controllers
                 return RedirectToAction("ShowAllEmployee");
             }
             else
-            { 
+            {
                 return RedirectToAction("Error");
             }
 
@@ -165,7 +171,7 @@ namespace EmployeeForm.Controllers
             EmpRepository Emprepo = new EmpRepository();
             List<Employee> test = new List<Employee>();
             test = Emprepo.GetAllEmployee();
-            return View(test.Where(x=> x.FirstName.Contains(Search)).ToList());
+            return View(test.Where(x => x.FirstName.Contains(Search)).ToList());
         }
 
         public ActionResult MehkamDetail()
@@ -173,21 +179,56 @@ namespace EmployeeForm.Controllers
             return View();
         }
 
-        public ActionResult Cadres()
+        public ActionResult AddCadres()
         {
             return View();
         }
-
-        public ActionResult Agency()
+        public ActionResult ListOfCadres()
+        {
+            EmpRepository Emprepo = new EmpRepository();
+            return View(Emprepo.ListCadres());
+        }
+        public ActionResult AddAgency()
         {
             return View();
-        }          
-
+        }       
+        [HttpPost]
+        public ActionResult AddAgency(Agency age)
+        {
+            EmpRepository Emprepo = new EmpRepository();
+            if (Emprepo.addAgency(age))
+            {
+                return RedirectToAction("ShowAllemployee");
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+        }
+        public ActionResult ListOfAgency()
+        {
+            EmpRepository Emprepo = new EmpRepository();
+            return View(Emprepo.ListAgency());
+        }
         public ActionResult EmployeeJobDetails()
         {
             return View();
         }
 
+        public JsonResult GetCadresName()
+        {
+            EmpRepository Emprepo = new EmpRepository();
+            List<Cadres> GetAllnames = new List<Cadres>();
+            GetAllnames = Emprepo.ListCadres();
+            return Json(GetAllnames, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetDesignationName()
+        {
+            EmpRepository Emprepo = new EmpRepository();
+            List<EmpDesignation> GetAllnames = new List<EmpDesignation>();
+            GetAllnames = Emprepo.ListDesignation();
+            return Json(GetAllnames, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult Taluka()
         {
             return View();
@@ -197,16 +238,26 @@ namespace EmployeeForm.Controllers
             return View();
         }
 
-        public ActionResult Exam()
+        public ActionResult AddExam()
         {
             return View();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
         }
-
+        public ActionResult ListofExam()
+        {
+            EmpRepository Emprepo = new EmpRepository();
+            return View(Emprepo.ListExam());
+        }
         public ActionResult EmployeeExam()
         {
             return View();
         }
-
+        public JsonResult GetExamName()
+        {
+            EmpRepository Emprepo = new EmpRepository();
+            List<Exam> GetAllnames = new List<Exam>();
+            GetAllnames = Emprepo.ListExam();
+            return Json(GetAllnames, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult Office()
         {
             return View();
@@ -217,9 +268,14 @@ namespace EmployeeForm.Controllers
             return View();
         }
 
-        public ActionResult Designation()
+        public ActionResult AddDesignation()
         {
             return View();
+        }
+        public ActionResult ListofDesignation()
+        {
+            EmpRepository Emprepo = new EmpRepository();
+            return View(Emprepo.ListDesignation());
         }
         public ActionResult ShowListDistrict(int? page)
         {

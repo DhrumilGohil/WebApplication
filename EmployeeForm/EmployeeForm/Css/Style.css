@@ -33,7 +33,9 @@ li a:hover {
     font-weight:bold;
     color: white!important;
 }
+
 .pagebox a {
+    background-color:white;
     color:black;
     font-weight:bold;
     padding:10px;
@@ -46,41 +48,37 @@ li a:hover {
 .Linkbtn {
     color: white;
 }
-th,tr,td {
+tr,td {
     text-align:center;
     padding-top:10px;
-    border:1px solid gray;
+}
+th,tr,td {
+    border:2px solid;
 }
 
 .TableBox  {
     box-shadow: 0px 5px 10px 5px gray;
 }
 .Admin {
-    font-size:30px;
+    font-size:25px;
 }
 
 .form-box {
-    background-color: lightblue;
+    background-color:white;
     box-shadow: 0px 0px 15px 0px gray;
-    position: absolute;
     width: 100%;
-    left: 0 !important;
+    height: auto;
 }
 
 .searchbox{
-    position: absolute;
-    right: 0;
-    margin-right:120px;
+    display:inline-block;
+    border:1px solid;
     width: 250px;
     height: 40px;
     border-radius: 6px;
 }
 .search-btn {
-    position: absolute;
-    right: 0;
     height: 40px;
-    margin-right: 40px;
-    margin-top: 48px;
 }
 .Header {
     font-size: 45px;
@@ -90,5 +88,16 @@ th,tr,td {
 .submit {
    z-index:1;
 }
-
+thead {
+    font-size:15px
+}
+.pagebox a:hover {
+    background-color:black;
+    color:white;    
+    transition:ease 0.5s;
+}
+.table
+{
+    background-color:white;
+}
 

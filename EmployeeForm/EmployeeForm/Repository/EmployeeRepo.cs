@@ -216,19 +216,23 @@ namespace EmployeeForm.Repository
 
         }
 
-        public List<string> GetAllAgency()
+        public List<Agency> GetAllAgency()
         {
-            List<string> Agencies = new List<string>();
+            List<Agency> Agencies = new List<Agency>();
             string constr = ConfigurationManager.ConnectionStrings["EmpConnect"].ConnectionString;
             SqlConnection con = new SqlConnection(constr);
             con.Open();
             SqlCommand com = new SqlCommand("GetAllAgencies", con);
             com.CommandType = CommandType.StoredProcedure;
-            DataTable dt = new DataTable();
             SqlDataReader read = com.ExecuteReader();
             while (read.Read())
             {
-                Agencies.Add(Convert.ToString(read["AgencyName"]));
+                Agencies.Add(new Agency()
+                { 
+                   AgencyName = Convert.ToString(read["AgencyName"]),
+                   AgencyID = Convert.ToInt32(read["AgencyID"])
+                
+                });
             }
             return Agencies;
 
@@ -300,7 +304,117 @@ namespace EmployeeForm.Repository
             }
 
         }
+
+        public bool addAgency(Agency Age)
+        {
+            string constr = ConfigurationManager.ConnectionStrings["Empconnect"].ConnectionString;
+            SqlConnection con = new SqlConnection(constr);
+            con.Open();
+            SqlCommand com = new SqlCommand("Addagency",con);
+            com.CommandType = CommandType.StoredProcedure;
+            com.Parameters.AddWithValue("@AgencyName", Age.AgencyName);
+            com.Parameters.AddWithValue("@createdBy", Age.CreatedBy);
+            com.Parameters.AddWithValue("@createdDate", DateTime.Now);
+            int affectedRow = com.ExecuteNonQuery();
+            con.Close();
+            if (affectedRow > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        public List<Agency> ListAgency()
+        {
+            string constr = ConfigurationManager.ConnectionStrings["EmpConnect"].ConnectionString;
+            SqlConnection con = new SqlConnection(constr);
+            List<Agency> Listofagency = new List<Agency>();
+            con.Open();
+            SqlCommand com = new SqlCommand("GetAllDetailAgency", con);
+            com.CommandType = CommandType.StoredProcedure;
+            SqlDataReader read = com.ExecuteReader();
+            while (read.Read()) {
+                Listofagency.Add(new Agency()
+                {
+                    AgencyID = Convert.ToInt32(read["AgencyID"]),
+                    AgencyName = Convert.ToString(read["AgencyName"]),
+                    CreatedBy = Convert.ToInt32(read["CreatedBy"]),
+                    CreatedDate = Convert.ToDateTime(read["CreatedDate"])
+                }); 
+            }
+            return Listofagency;
+        }
+
+        public List<Cadres> ListCadres()
+        {
+            List<Cadres> GetAllCadres = new List<Cadres>();
+            string Constr = ConfigurationManager.ConnectionStrings["EmpConnect"].ConnectionString;
+            SqlConnection con = new SqlConnection(Constr);
+            con.Open();
+            SqlCommand com = new SqlCommand("GetAllCadres", con);
+            com.CommandType = CommandType.StoredProcedure;
+            SqlDataReader read = com.ExecuteReader();
+            while (read.Read())
+            {
+                GetAllCadres.Add(new Cadres()
+                {
+                    CadresID = Convert.ToInt32(read["CadresID"]),
+                    CadresName = Convert.ToString(read["CadresName"]),
+                    CreatedBy = Convert.ToInt32(read["CreatedBy"]),
+                    CreatedDate = Convert.ToDateTime(read["CreatedDate"])
+                });
+            }
+            return GetAllCadres;
+        }
+        public List<EmpDesignation> ListDesignation()
+        {
+            List<EmpDesignation> ListofDesignation = new List<EmpDesignation>();
+            string constr = ConfigurationManager.ConnectionStrings["EmpConnect"].ConnectionString;
+            SqlConnection con = new SqlConnection(constr);
+            con.Open();
+            SqlCommand com = new SqlCommand("GetAllDesignation", con);
+            com.CommandType = CommandType.StoredProcedure;
+            SqlDataReader read = com.ExecuteReader();
+            while (read.Read())
+            {
+                ListofDesignation.Add(new EmpDesignation()
+                {
+                    DesignationID = Convert.ToInt32(read["DesignationID"]),
+                    DesignationName = Convert.ToString(read["DesignationName"]),
+                    CreatedBy = Convert.ToInt32(read["CreatedBy"]),
+                    CreatedDate = Convert.ToDateTime(read["CreatedDate"])
+                });
+            }
+            return ListofDesignation;
+        }
+        public List<Exam> ListExam()
+        {
+            List<Exam> ListofExam = new List<Exam>();
+            string constr = ConfigurationManager.ConnectionStrings["EmpConnect"].ConnectionString;
+            SqlConnection con = new SqlConnection(constr);
+            con.Open();
+            SqlCommand com = new SqlCommand("GetAllExam", con);
+            com.CommandType = CommandType.StoredProcedure;
+            SqlDataReader read = com.ExecuteReader();
+            while (read.Read())
+            {
+                ListofExam.Add(new Exam()
+                {
+                    ExamID = Convert.ToInt32(read["ExamID"]),
+                    ExamName = Convert.ToString(read["ExamName"]),
+                    CreatedBy = Convert.ToInt32(read["CreatedBy"]),
+                    CreatedDate = Convert.ToDateTime(read["CreatedDate"]),
+                    UpdatedBy = Convert.ToInt32(read["UpdatedBy"]),
+                    UpdatedDate = Convert.ToDateTime(read["UpdatedDate"])
+                });
+            }
+            return ListofExam;
+        }
     }
+   
 }
 
     /* public bool deleteEmployee(int EmployeeId)

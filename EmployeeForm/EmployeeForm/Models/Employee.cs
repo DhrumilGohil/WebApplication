@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace EmployeeForm.Models
 {
@@ -112,114 +113,179 @@ namespace EmployeeForm.Models
     public class MehkamDetail
     {
         public int MehkamID { get; set; }
-        public int CardeID { get; set; }
+        [Display(Name ="Cadres ID")]
+        public int CardesID { get; set; }
+        [Display(Name = "Designation ID")]
         public int DesignationID { get; set; }
+        [Display(Name = "Approve Vacancies")]
         public int ApprovedVacancies { get; set; }
+        [Display(Name = "Filled Vacancies")]
         public int FilledVacancies { get; set; }
+        [Display(Name = "Remark")]
         public string Remarks { get; set; }
+        [Display(Name = "Created By")]
         public int CreatedBy { get; set; }
+        [DataType(DataType.Date)]
         public DateTime CreatedDate { get; set; }
+        [Display(Name = "Updated By")]
         public int UpdatedBy { get; set; }
+        [DataType(DataType.Date)]
         public DateTime UpdatedDate { get; set; }
 }
 
-    public class Cardes
+    public class Cadres
         {
-        public int CardesID { get; set; }
-        [Display(Name ="Cardes Name")]
-        public string CardesName { get; set; }
-        [Display(Name = "Cardes By")]
+        public int CadresID { get; set; }
+        [Display(Name ="Cadres Name")]
+        public string CadresName { get; set; }
+        [Display(Name = "Created By")]
         public int CreatedBy { get; set; }
+        [DataType(DataType.Date)]
         public DateTime CreatedDate { get; set; }
         }
-    public class Agency
+    public class Agency 
     {
         public int AgencyID { get; set; }
+        [Display(Name = "Agency Name")]
         public string AgencyName { get; set; }
+        [Display(Name = "Created By")]
         public int CreatedBy { get; set; }
+        [DataType(DataType.Date)]
         public DateTime CreatedDate { get; set; }
     }
     public class Office
     {
         public int OfficeID { get; set; }
+        [Display(Name = "Office Name")]
         public string OfficeName { get; set; }
+        [Display(Name = "Created By")]
         public int CreatedBy { get; set; }
+        [DataType(DataType.Date)]
         public DateTime CreatedDate { get; set; }
     }
     public class EmpDesignation
     {
         public int DesignationID { get; set; }
+        [Display(Name = "Designation Name")]
         public string DesignationName { get; set; }
+        [Display(Name = "Created By")]
         public int CreatedBy { get; set; }
+        [DataType(DataType.Date)]
         public DateTime CreatedDate { get; set; }
     }
     public class District
     {
         public int DistrictID { get; set; }
+        [Display(Name = "District Name")]
         public string DistrictName { get; set; }
+        [Display(Name = "Created By")]
         public int CreatedBy { get; set; }
+        [DataType(DataType.Date)]
         public DateTime CreatedDate { get; set; }
     }
 
     public class EmployeeJobDetail
     {
         public int EmpJobID { get; set; }
+        [Display(Name = "Employee ID")]
         public string EmployeeID { get; set; }
-        public int DistrictID { get; set; }
+        [Display(Name = "District ID")]
+        public int Designation { get; set; }
+        [Display(Name = "Craeted By")]
         public string CreatedBy { get; set; }
+        [DataType(DataType.Date)]
         public DateTime CreatedDate { get; set; }
+        [Display(Name = "From Date")]
+        [DataType(DataType.Date)]
         public DateTime FromDate { get; set; }
+        [Display(Name = "From To")]
+        [DataType(DataType.Date)]
         public DateTime FromTo { get; set; }
+        [Display(Name = "Office ID")]
         public int OfficeID { get; set; }
+        [Display(Name = "Place Name")]
         public string PlaceName { get; set; }
     }
     public class Taluka
     {
         public int TalukaID { get; set; }
+        [Display(Name = "Taluka Name")]
         public string TalukaName { get; set; }
+        [Display(Name = "District ID")]
         public int DistrictID { get; set; }
+        [Display(Name = "Created By")]
         public int CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
     }
     public class Exam
     {
         public int ExamID { get; set; }
+        [Display(Name = "Exam Name")]
         public string ExamName { get; set; }
-        public int DistrictID { get; set; }
+        [Display(Name = "Created By")]
         public int CreatedBy { get; set; }
+        [DataType(DataType.Date)]
         public DateTime CreatedDate { get; set; }
+        [Display(Name = "Updated By")]
         public int UpdatedBy { get; set; }
+        [DataType(DataType.Date)]
         public DateTime UpdatedDate { get; set; }
     }
     public class EmployeeExam
     {
         public int EmployeeID { get; set; }
+        [Display(Name = "Exam ID")]
         public string ExamID { get; set; }
-        public int PassingDate { get; set; }
-        public string NumberOfAttempt { get; set; }
+        [Display(Name = "Passing Date")]
+        [DataType(DataType.Date)]
+        public DateTime PassingDate { get; set; }
+        [Display(Name = "Number of attempt")]
+        public int NumberOfAttempt { get; set; }
+        [Display(Name = "Created By")]
         public int CreatedBy { get; set; }
+        [DataType(DataType.Date)]
         public DateTime CreatedDate { get; set; }
     }
 
     public class Login
     {
         public int LoginID { get; set; }
-        public string UserName { get; set; }
+        public string Username { get; set; }
         [DataType(DataType.Password)]
         public int Password { get; set; }
     }
-
-    public enum EmpType
+    public class CustomerEditViewModel
     {
-        Goverment,
+        [Display(Name = "Customer Number")]
+        public string CustomerID { get; set; }
+
+        [Required]
+        [Display(Name = "Customer Name")]
+        [StringLength(75)]
+        public string CustomerName { get; set; }
+
+        [Required]
+        [Display(Name = "Country")]
+    
+        public IEnumerable<SelectListItem> Countries { get; set; }
+
+        [Required]
+        [Display(Name = "State / Region")]
+    
+        public IEnumerable<SelectListItem> Regions { get; set; }
+    }
+
+public enum EmpType
+    {
+        Goverment = 1,
         [Description("Non-Goverment")]
-        NonGoverment
+        NonGoverment = 2
     }
     public enum Gender
     {
-        Male,
-        Female,
-        Other
+        Male =1,
+        Female = 2,
+        Other = 3
     }
     public enum EmployeeEntry
     {
@@ -228,114 +294,4 @@ namespace EmployeeForm.Models
          District_Transfer
     }
 
-    public enum Designation
-    {
-        Collector,
-        RAC,
-        ARDC,
-        Choose,
-        Chitnis,
-        [Description("Adhik Chitnis")]
-        AdhikChitnis,
-        [Description("PRO to Collector")]
-        PROtoCollector,
-        [Description("Exam Chitnis")]
-        ExamChitnis,
-        [Description("Prant Officer")]
-        Prantofficer,
-        Mamlatdar,
-        [Description("Ad. District Election Officer")]
-        AdDistrictElectionOfficer,
-        [Description("DistrictSupplyofficer")]
-        DistrictSupplyofficer,
-        [Description("District Planning officer")]
-        DistrictPlanningofficer,
-        [Description("Dy. Collector")]
-        DyCollector,
-        [Description("Addition Special L.A.O.")]
-        AdditionSpecialLAO,
-        [Description("Second L.A.O.")]
-        SecondLAO,
-        [Description("Deputy Director")]
-        DeputyDirector, 
-        Talati,
-        Clerk,
-        Accountant,
-        [Description("Data-Entry Operator")]
-        DataEntryOperator,
-        [Description("Officer Boy")]
-        OfficerBoy
-    }
-    public enum Department
-    {
-        [Description("  Collector Officer")]
-        CollectorOfficer,
-        Munacipality,
-        Legal,
-        DUDA,
-        [Description(" Entertainment Tax")]
-        EntertainmentTax,
-        [Description("Alien Recovery")]
-        AlienRecovery,
-        Maninagar,
-        Asarva,
-        Vatva,
-        Vejalpur,
-        Ghatalodiya,
-        Sabarmati,
-        Dascroi,
-        Sanand,
-        Dholka,
-        Bavla,
-        Dhandhuka,
-        Dholera,
-        Viramgam,
-        Mandal,
-        DCLR,
-        [Description("N/A")]
-        NA,
-        Election,
-        [Description("Sardarnagar Township")]
-        SardarnagarTownship,
-        [Description("LAO-ONGC")]
-        LAOONGC,
-        [Description("Stamp Duty-1")]
-        StampDuty1,
-        [Description("Stamp Duty-2")]
-        StampDuty2,
-        [Description("Small Saving")]
-        SmallSaving,
-        [Description("Asarva Mamlatdar Ext.")]
-        AsarvaMamlatdarExt,
-        [Description("Dariyapur-Kalupur Mamlatdar Ext.")]
-        DariyapurKalupurMamlatdarExt,
-        [Description(" Naroda-Nikol Mamlatdar Ext.")]
-        NarodaNikolMamlatdarExt,
-        [Description(" Danilimda Mamlatdar Ext.")]
-        DanilimdaMamlatdarExt,
-        [Description("Khokhra-Memdabad Mamlatdar Ext.")]
-        KhokhraMemdabadMamlatdarExt,
-        [Description("Rajpur-Hirpur Mamlatdar Ext.")]
-        RajpurHirpurMamlatdarExt,
-        [Description(" Rakhiyal Mamlatdar Ext.")]
-        RakhiyalMamlatdarExt,
-        [Description(" Vastral MamlatdarExt.")]
-        VastralMamlatdarExt,
-        [Description("Vatava Mamlatdar Ext.")]
-        VatavaMamlatdarExt,
-        [Description("Acher Mamlatdar Ext.")]
-        AcherMamlatdarExt,
-        [Description(" Paladi Mamlatdar Ext.")]
-        PaladiMamlatdarExt,
-        [Description(" Vadaj Mamlatdar Ext.")]
-        VadajMamlatdarExt,
-        [Description(" Sola Mamlatdar Ext.")]
-        SolaMamlatdarExt,
-        [Description("Thaltej Mamlatdar Ext.")]
-        ThaltejMamlatdarExt,
-        [Description("Vejalpur Mamlatdar Ext.")]
-        VejalpurMamlatdarExt,
-        [Description("Sarkhej Mamlatdar Ext.")]
-        SarkhejMamlatdarExt,
-    }
 }

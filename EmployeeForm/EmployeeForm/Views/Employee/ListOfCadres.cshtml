@@ -1,0 +1,58 @@
+﻿@model IEnumerable<EmployeeForm.Models.Cadres>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of Designation</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale = 1.0">
+</head>
+<body>
+    <div class="container-fluid-xl">
+        <div class="row text-center">
+            @Html.Partial("Sidebar")
+            <div class="col-lg-10">
+                <div class="Header">
+                    List Of Cadres
+                </div>
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CadresID)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CadresName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CreatedBy)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CreatedDate)
+                        </th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(showitem => item.CadresID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(showitem => item.CadresName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(showitem => item.CreatedBy)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(showitem => item.CreatedDate)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
+
+

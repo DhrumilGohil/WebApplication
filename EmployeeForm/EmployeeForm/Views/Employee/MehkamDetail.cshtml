@@ -9,7 +9,7 @@
     <link href="~/Css/Style.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid-lg">
         <div class="row">
             @Html.Partial("Sidebar")
             <div class="col-lg-10">
@@ -26,23 +26,23 @@
                             <hr />
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group">
-                                @Html.LabelFor(model => model.CardeID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.CardesID, htmlAttributes: new { @class = "control-label ml-3" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.CardeID, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.CardeID, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(model => model.CardesID, Enumerable.Empty<SelectListItem>(), new { @class = "form-control Cadres" })
+                                    @Html.ValidationMessageFor(model => model.CardesID, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.DesignationID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.DesignationID, htmlAttributes: new { @class = "control-label ml-3" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.DesignationID, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.DropDownListFor(model => model.DesignationID, Enumerable.Empty<SelectListItem>(), new { @class = "form-control Designation" })
                                     @Html.ValidationMessageFor(model => model.DesignationID, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.ApprovedVacancies, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.ApprovedVacancies, htmlAttributes: new { @class = "control-label ml-3" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.ApprovedVacancies, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.ApprovedVacancies, "", new { @class = "text-danger" })
@@ -50,7 +50,7 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.FilledVacancies, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.FilledVacancies, htmlAttributes: new { @class = "control-label ml-3" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.FilledVacancies, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.FilledVacancies, "", new { @class = "text-danger" })
@@ -58,7 +58,7 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label ml-3" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
@@ -66,7 +66,7 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.CreatedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.CreatedBy, htmlAttributes: new { @class = "control-label ml-3" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
@@ -74,22 +74,16 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.UpdatedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.UpdatedBy, htmlAttributes: new { @class = "control-label ml-3" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.UpdatedBy, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.UpdatedBy, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4"></div>
-                        <div class="col-lg-4 text-center">
-                            <div class="form-group">                                
-                                    <input type="submit" value="Submit" class="btn btn-primary px-5" style="text-align:center;" />                                
+                            <div class="submit text-center ">
+                                <button type="submit" class="btn btn-primary font-weight-bold p-2 px-5 mx-auto mt-5">Submit</button>
                             </div>
                         </div>
-                        <div class="col-lg-4"></div>
                     </div>
                 }
             </div>
@@ -98,6 +92,43 @@
 
 </body>
 </html>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url: "/Employee/GetCadresName",
+            dataType: "json",
+            type: "GET",
+            success: function (data) {
+             
+                for (var i = 0; i < data.length; i++) {
+                    options = '<option value="' + data[i]["CadresID"] + '">' + data[i]["CadresName"] + '</option>';
+                    $(".Cadres").append(options);
+                }
+            },
+            error: function () {
+                alert(error)
+            }
+        });
+
+        $.ajax({
+            url: "/Employee/GetDesignationName",
+            dataType: "json",
+            type: "GET",
+            success: function (data) {
+
+                for (var i = 0; i < data.length; i++) {
+                    options = '<option value="' + data[i]["DesignationID"] + '">' + data[i]["DesignationName"] + '</option>';
+                    $(".Designation").append(options);
+                }
+            },
+            error: function () {
+                alert(error)
+            }
+        });
+    });
+</script>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

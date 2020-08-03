@@ -15,244 +15,112 @@
     <link href="~/Css/Style.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="container-fluid-lg" style="border:0px solid;">
-        <div class="row">
-            @Html.Partial("Sidebar")
-            <div class="col-lg-10">
-                <div class="row justify-content-center" style="border:0px solid;">
-                    <div class="col-lg-12 d-block text-center">
-                        <h1 class="Header" style="border:0px solid;">List Employee</h1>
-                    </div>
-                </div>
+    
+<div class="container-fluid-lg" style="border:0px solid;">
+    <div class="row text-center">
+        @Html.Partial("Sidebar")
+        <div class="col-lg-10">
+            <h1>Employee List</h1>
+            <div class="row justify-content-end" style="border:0px solid;">
                 @using (@Html.BeginForm("ShowAllEmployee", "Employee"))
                 {
-                    <div class="row">
-                        <div class="col-lg-12">
-                            @Html.TextBox("Search", "", new { PlaceHolder = "Search...", @class = "form-control searchbox mt-5" })
-                             <button type="submit" class="btn btn-success  search-btn">Search</button>
-         
-                        </div>
-                    </div>
+                    @Html.TextBox("Search", "", new { PlaceHolder = "Search...", @class = " form-control searchbox mt-5" })
+                    <button type="submit" class="btn btn-success  search-btn mb-1">Search</button>
+
                 }
-                <div class="TableBox mt-5 pl-5">
-                    <div class="row">
-                        <div class="col-lg-12 mt-5">
+            </div>
+            <div class="row">
+                <div class="TableBox mt-3 ml-4">
 
-                            <table class="table mt-3" border="2">
-                                <tr>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.First().FirstName)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.First().LastName)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.First().Gender)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.First().Email)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.First().PresentDistrictID)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.First().PresentTalukaID)
-                                    </th>
-                                    <!--<th>
-                            @Html.DisplayNameFor(model => model.First().PresentPINCODE)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().NativeAddress)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().NativeDistrictID)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().NativeTalukaID)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().NativePINCODE)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().PhoneNumber)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().AlternatePhoneNumber)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().EmergencyContactNumber)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().EmergencyContactName)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().DateOfBirth)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().Dateofjoin)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().DateofRetirement)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().DistrictJoiningDate)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().EmployeeEntryinDistrict)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().EmployeeType)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().AgencyID)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().CreatedBy)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().CreatedDate)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().UpdatedBy)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().UpdatedDate)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().isActive)
-                        </th>-->
-                                </tr>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.First().FirstName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.First().LastName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.First().Gender)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.First().EmployeeType)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.First().PresentDistrictID)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.First().PresentTalukaID)
+                                </th>
+                            </tr>
+                        </thead>
+                        @if(Model.PageCount == 0)
+                        {
+                            <tr>
+                                <td colspan="6">
+                                    <label>No Record found...</label>
+                                </td>
+                            </tr>
+                        }
+                        <tbody>
 
-                                @foreach (var item in Model)
+                            @foreach (var item in Model)
+                            {
+                                if (item.isActive == true)
                                 {
-                                    if (item.isActive == true)
-                                    {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.FirstName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.LastName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Gender)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Email)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.PresentDistrictID)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.PresentTalukaID)
-                                            </td>
-                                            <!--<td>
-                                    @Html.DisplayFor(modelItem => item.PresentPINCODE)
-                                </td>
-                                <td>-
-                                    @Html.DisplayFor(modelItem => item.NativeAddress)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NativeDistrictID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NativeTalukaID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NativePINCODE)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.AlternatePhoneNumber)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.EmergencyContactNumber)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.EmergencyContactName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DateOfBirth)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Dateofjoin)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DateofRetirement)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DistrictJoiningDate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.EmployeeEntryinDistrict)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.EmployeeType)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.AgencyID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CreatedBy)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CreatedDate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.UpdatedBy)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.UpdatedDate)
-                                </td>
-                                <td>
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FirstName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LastName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Gender)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EmployeeType)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PresentDistrictID)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PresentTalukaID)
+                                        </td>
 
-                                    if (item.isActive == false)
-                                    {
-                                        @Html.Label("NO")
-                                    }
-                                    else
-                                    {
-                                        @Html.Label("YES")
-                                    }
-
-                                </td>-->
-                                            <td>
-                                                <a href="@Url.Action("EditEmp", "Employee", new { id = item.EmployeeID })" class="btn btn-primary">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="@Url.Action("Details", "Employee", new { id = item.EmployeeID })" class="btn btn-danger">
-                                                    Details
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="@Url.Action("EmpActive", "Employee", new { id = item.EmployeeID })" class="btn btn-success">
-                                                    IsActive
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    }
+                                        <td>
+                                            <a href="@Url.Action("EditEmp", "Employee", new { id = item.EmployeeID })" class="btn btn-primary">
+                                                Edit
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("Details", "Employee", new { id = item.EmployeeID })" class="btn btn-danger">
+                                                Details
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("EmpActive", "Employee", new { id = item.EmployeeID })" class="btn btn-success">
+                                                IsActive
+                                            </a>
+                                        </td>
+                                    </tr>
                                 }
-                            </table>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-3 text-center">
-                    <div class="col-lg-4"></div>
-                    <div class="col-lg-4">
-                        <div class="pagebox">
-                            @Html.PagedListPager(Model, page => Url.Action("ShowAllEmployee", new { page }))
-                        </div>
-                    </div>
-                    <div class="col-lg-4"></div>
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
+            <div class="row mt-3 text-center">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                    <div class="pagebox">
+                        @Html.PagedListPager(Model, page => Url.Action("ShowAllEmployee", new { page }))
+                    </div>
+                </div>
+                <div class="col-lg-4"></div>
+            </div>
+        </div>
         </div>
     </div>
 </body>
