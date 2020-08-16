@@ -14,10 +14,10 @@
     <link href="~/Css/Style.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="container-fluid-lg" style="border:0px solid;">
+    <div class="wrapper" style="border:0px solid;">
         <div class="row">
             @Html.Partial("Sidebar")
-            <div class="col-lg-10">
+            <div class="col-lg-10 col-md-10">
 
                 @using (Html.BeginForm("AddEmp", "Employee"))
                 {
@@ -267,7 +267,7 @@
 
     </body>
 </html>
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
 
@@ -332,8 +332,8 @@
             });
         });
 
-
         $(".NativeDistrict").change(function () {
+            
             var DistrictID = $(".NativeDistrict").val();
             //alert(DistrictID); new SelectList((System.Collections.IEnumerable)ViewData["District"])
             var options = '';
@@ -357,6 +357,7 @@
                 }
             });
         });
+       
     });
 </script>
 

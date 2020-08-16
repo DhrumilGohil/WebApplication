@@ -13,59 +13,59 @@
 
 </head>
 <body>
-    <div class="container-fluid-lg">
+    <div class="wrapper">
         <div class="row">
 
             @Html.Partial("Sidebar")
-            <div class="col-lg-10 TableBox mb-3 p-5">
+            <div class="col-lg-10 col-md-10 ">
                 <h1 class="text-center">List of District's</h1>
                 <br>
-                <table class="table bg-light" border="2">
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().DistrictID)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().DistrictName)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().CreatedBy)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().CreatedDate)
-                        </th>
-                    </tr>
-
-                    @foreach (var item in Model)
-                    {
+                    <table class="table" border="2">
                         <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DistrictID)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DistrictName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreatedBy)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreatedDate)
-                            </td>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().DistrictID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().DistrictName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().CreatedBy)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().CreatedDate)
+                            </th>
                         </tr>
-                    }
 
-                </table>
-                <div class="row mt-3">
-                    <div class="col-lg-4"></div>
-                    <div class="col-lg-4 text-center">
-                        <div class="pagebox ">
-                            @Html.PagedListPager(Model, page => Url.Action("ShowListDistrict", new { page }))
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DistrictID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DistrictName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                    <div class="row mt-3">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4 text-center">
+                            <div class="pagebox ">
+                                @Html.PagedListPager(Model, page => Url.Action("ShowListDistrict", new { page }))
+                            </div>
                         </div>
+                        <div class="col-lg-4"></div>
                     </div>
-                    <div class="col-lg-4"></div>
                 </div>
             </div>
-           </div>
     </div>
 </body>
 </html>

@@ -19,6 +19,10 @@ namespace EmployeeForm.Controllers
 {
     public class EmployeeController : Controller
     {
+        public ActionResult GetRetireEmp()
+        {
+            return View();
+        }
         // GET: Employee
         public ActionResult ShowAllEmployee(int? page, string Search)
         {
@@ -72,12 +76,22 @@ namespace EmployeeForm.Controllers
 
         // GET: Employee/Edit/5
         public ActionResult EditEmp(int id)
+        
         {
             EmpRepository Emprepo = new EmpRepository();
             List<Employee> EditEmployee = new List<Employee>();
             EditEmployee = Emprepo.GetAllEmployee(id);
+            ViewBag.PdId = EditEmployee[0].PresentDistrictID;
+            ViewBag.PtId = EditEmployee[0].PresentTalukaID;
+            ViewBag.NdId = EditEmployee[0].NativeDistrictID;
+            ViewBag.NtId = EditEmployee[0].NativeTalukaID;
+            ViewBag.AgencyId = EditEmployee[0].AgencyID;
+            ViewBag.Gender = EditEmployee[0].Gender;
+            ViewBag.EmployeeType = EditEmployee[0].EmployeeType;
+            ViewBag.Doj = EditEmployee[0].Dateofjoin;
             return View(EditEmployee);
         }
+       
 
         // POST: Employee/Edit/5
         [HttpPost]
@@ -116,7 +130,7 @@ namespace EmployeeForm.Controllers
             return Json(Districts, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
-        public JsonResult GetAllTalukas(int Empid)
+        public JsonResult GetAllTalukas([Optional] int Empid)
         {
             EmpRepository Emprepo = new EmpRepository();
             List<Taluka> Talukas = Emprepo.GetAllTaluka(Empid);

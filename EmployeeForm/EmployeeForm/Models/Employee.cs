@@ -76,18 +76,21 @@ namespace EmployeeForm.Models
         [Required(ErrorMessage = "Enter Emergency Contact Name")]
         [Display(Name = "Emergency Contact Name")]
         public string EmergencyContactName { get; set; }
-       
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Date of Birth is required.")]
         [DataType(DataType.Date)]        
         [Display(Name = "Date Of Birth")]
         public System.DateTime DateOfBirth { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         [Display(Name = "Date Of Join")]
         [Required(ErrorMessage = "Date of join is required.")]
         public System.DateTime Dateofjoin { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         [Display(Name = "Date Of Retirement")]
         public System.DateTime DateofRetirement { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         [Display(Name = "District Join Date")]
         [Required(ErrorMessage = "District Join Date Birth is required.")]        
@@ -283,9 +286,9 @@ public enum EmpType
     }
     public enum Gender
     {
-        Male =1,
-        Female = 2,
-        Other = 3
+        Male,
+        Female,
+        Other
     }
     public enum EmployeeEntry
     {

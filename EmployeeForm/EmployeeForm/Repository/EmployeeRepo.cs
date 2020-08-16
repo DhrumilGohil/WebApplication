@@ -192,7 +192,7 @@ namespace EmployeeForm.Repository
             return Districts;
         }
 
-        public List<Taluka> GetAllTaluka(int DistrictID)
+        public List<Taluka> GetAllTaluka([Optional] int DistrictID)
         {
             List<Taluka> Talukas = new List<Taluka>();
             string constr = ConfigurationManager.ConnectionStrings["EmpConnect"].ConnectionString;
@@ -201,7 +201,7 @@ namespace EmployeeForm.Repository
             SqlCommand com = new SqlCommand("GetAllTaluka", con);
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.AddWithValue("@DistrictID", DistrictID);
-            DataTable dt = new DataTable();
+         
             SqlDataReader read = com.ExecuteReader();
             while (read.Read())
             {

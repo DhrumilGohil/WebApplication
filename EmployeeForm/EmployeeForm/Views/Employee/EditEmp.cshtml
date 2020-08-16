@@ -9,13 +9,14 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Css/Style.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
 
 </head>
 <body>
-    <div class="container-fluid" style="border:0px solid;">
+    <div class="wrapper" style="border:0px solid;">
         <div class="row">
             @Html.Partial("Sidebar")
-            <div class="col-lg-10">
+            <div class="col-lg-10 col-md-10">
 
                 @using (Html.BeginForm("EditEmp", "Employee"))
                 {
@@ -34,7 +35,7 @@
                                 <div class="col-lg-6 mt-5">
                                     @Html.LabelFor(model => item.FirstName, new { @class = "ml-1 font-weight-bold" })
                                     <div class="form-group">
-                                        @Html.EditorFor(model => item.FirstName, new { htmlAttributes = new { PlaceHolder = "Enter First Name", @class = "form-control" } })
+                                        @Html.EditorFor(model => item.FirstName, new { htmlAttributes = new { PlaceHolder = "Enter First Name", @class = "form-control Fname" } })
                                         @Html.ValidationMessageFor(model => item.FirstName, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -59,7 +60,7 @@
                                     @Html.LabelFor(model => item.EmployeeType, new { @class = "ml-1 font-weight-bold" })
                                     <div class="form-group">
                                         <div class="form-group">
-                                            @Html.DropDownListFor(model => item.EmployeeType, new SelectList(Enum.GetValues(typeof(EmpType)), item.EmployeeType), "Employee Type", new { @class = "form-control EmployeeType" })
+                                            <select id="Emptype" class="Emptype form-control"></select>
                                             @Html.ValidationMessageFor(model => item.EmployeeType, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
@@ -77,7 +78,7 @@
                                 <div class="col-lg-6 mt-5">
                                     @Html.LabelFor(model => item.Gender, new { @class = "ml-1 font-weight-bold" })
                                     <div class="form-group">
-                                        @Html.DropDownList("Gender", new SelectList(Enum.GetValues(typeof(Gender))), "Choose Gender", new { @class = "form-control Gender" })
+                                        <select id="Gender" class="Gender form-control"></select>
                                         @Html.ValidationMessageFor(model => item.Gender, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -94,7 +95,7 @@
                                 <div class="col-lg-6 mt-5">
                                     @Html.LabelFor(model => item.PresentDistrictID, new { @class = "ml-1 font-weight-bold" })
                                     <div class="form-group">
-                                        @Html.DropDownList("PresentDistrictID", Enumerable.Empty<SelectListItem>(), "Present DistrictID", new { @class = "form-control District" })
+                                        <select id="PDID" class="PDID form-control"></select>
                                         @Html.ValidationMessageFor(model => item.PresentDistrictID, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -104,7 +105,7 @@
                                 <div class="col-lg-6 mt-5">
                                     @Html.LabelFor(model => item.PresentTalukaID, new { @class = "ml-1 font-weight-bold" })
                                     <div class="form-group">
-                                        @Html.DropDownList("PresentTalukaID", Enumerable.Empty<SelectListItem>(), "Present TalukaID", new { @class = "form-control PresentTaluka" })
+                                        <select id="PTID" class="PTID form-control"></select>
                                         @Html.ValidationMessageFor(model => item.PresentTalukaID, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -128,7 +129,7 @@
                                 <div class="col-lg-6 mt-5">
                                     @Html.LabelFor(model => item.NativeDistrictID, new { @class = "ml-1 font-weight-bold" })
                                     <div class="form-group">
-                                        @Html.DropDownList("NativeDistrictID", Enumerable.Empty<SelectListItem>(), "Native DistrictID", new { @class = "form-control NativeDistrict" })
+                                        <select id="NDID" class="NDID form-control"></select>
                                         @Html.ValidationMessageFor(model => item.NativeDistrictID, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -138,7 +139,7 @@
                                 <div class="col-lg-6 mt-5">
                                     @Html.LabelFor(model => item.NativeTalukaID, new { @class = "ml-1 font-weight-bold" })
                                     <div class="form-group">
-                                        @Html.DropDownList("NativeTalukaID", Enumerable.Empty<SelectListItem>(), "Native TalukaID", new { @class = "form-control NativeTaluka" })
+                                        <select id="NTID" class="NTID form-control"></select>
                                         @Html.ValidationMessageFor(model => item.NativeTalukaID, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -192,14 +193,14 @@
                                 <div class="col-lg-6 mt-5">
                                     @Html.LabelFor(model => item.DateOfBirth, new { @class = "ml-1 font-weight-bold" })
                                     <div class="form-group">
-                                        @Html.EditorFor(model => item.DateOfBirth, new { htmlAttributes = new { @type = "date", @class = "form-control DOB" } })
+                                        @Html.TextBoxFor(model => item.DateOfBirth, new { @type = "date", @class = "form-control DOB" })
                                         @Html.ValidationMessageFor(model => item.DateOfBirth, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="col-lg-6 mt-5">
                                     @Html.LabelFor(model => item.Dateofjoin, new { @class = "ml-1 font-weight-bold" })
                                     <div class="form-group">
-                                        @Html.EditorFor(model => item.Dateofjoin, new { htmlAttributes = new { @type = "date", @class = "form-control DOJ" } })
+                                        @Html.TextBoxFor(model => item.Dateofjoin, new { @type = "date", @class = "form-control DOJ datepicker" })
                                         @Html.ValidationMessageFor(model => item.Dateofjoin, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -209,14 +210,14 @@
                                 <div class="col-lg-6 mt-5">
                                     @Html.LabelFor(model => item.DateofRetirement, new { @class = "ml-1 font-weight-bold" })
                                     <div class="form-group">
-                                        @Html.EditorFor(model => item.DateofRetirement, new { htmlAttributes = new { @class = "form-control DOR" } })
+                                        @Html.TextBoxFor(model => item.DateofRetirement, new { @class = "form-control DOR datepicker" })
                                         @Html.ValidationMessageFor(model => item.DateofRetirement, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="col-lg-6 mt-5">
                                     @Html.LabelFor(model => item.DistrictJoiningDate, new { @class = "ml-1 font-weight-bold" })
                                     <div class="form-group">
-                                        @Html.EditorFor(model => item.DistrictJoiningDate, new { htmlAttributes = new { @type = "date", @class = "form-control DODJ" } })
+                                        @Html.TextBoxFor(model => item.DistrictJoiningDate, new { @type = "date", @class = "form-control DODJ datepicker" })
                                         @Html.ValidationMessageFor(model => item.DistrictJoiningDate, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -256,6 +257,7 @@
                                 </div>
                             </div>
                         }
+
                         <div class="submit text-center mt-5">
                             <button type="submit" class="btn btn-primary font-weight-bold p-2 px-5 mx-auto">Submit</button>
                         </div>
@@ -266,22 +268,58 @@
     </div>
 </body>
 </html>
-<link href="~/Content/jquery-ui.css" rel="stylesheet" />
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
-
-
+        $(".Fname").datepicker();
         var options = "";
+        if ("@ViewBag.Gender" == "@Gender.Male") {
+            options = '<option value="' + 0 + '" selected>' + "@Gender.Male" + '</option>';
+            $(".Gender").append(options);
+            $(".Gender").append('<option value="' + 2 + '">' + "@Gender.Female" + '</option>')
+            $(".Gender").append('<option value="' + 3 + '">' + "@Gender.Other" + '</option>')
+        }
+        else if ("@ViewBag.Gender" == "@Gender.Female") {
+            $(".Gender").append('<option value="' + 0 + '">' + "@Gender.Male" + '</option>')
+            options = '<option value="' + 1 + '" selected>' + "@Gender.Female" + '</option>';
+            $(".Gender").append(options);
+            $(".Gender").append('<option value="' + 2 + '">' + "@Gender.Other" + '</option>')
+        }
+        else {
+            $(".Gender").append('<option value="' + 0 + '">' + "@Gender.Male" + '</option>')
+            $(".Gender").append('<option value="' + 1 + '">' + "@Gender.Female" + '</option>')
+            options = '<option value="' + 2 + '" selected>' + "@Gender.Other" + '</option>';
+            $(".Gender").append(options);
+        }
+
+
+
+         if ("@ViewBag.EmployeeType" == "@EmpType.Goverment") {
+            $(".EmpType").append('<option value="' + 1 + '">' + "@EmpType.NonGoverment" + '</option>')
+            options = '<option value="' + 0 + '" selected>' + "@EmpType.Goverment" + '</option>';
+            $(".Emptype").append(options);
+        }
+        else  {
+             $(".Gender").append('<option value="' + 0 + '">' + "@EmpType.Goverment" + '</option>')
+             options = '<option value="' + 1 + '" selected>' + "@EmpType.NonGoverment" + '</option>';
+             $(".Emptype").append(options);
+        }
+
+
         $.ajax({
             url: "/Employee/GetAllAgencies",
             type: "GET",
             datatype: "json",
             success: function (data) {
+
                 for (var i = 0; i < data.length; i++) {
-                    options = '<option value="' + data[i]["AgencyID"] + '">' + data[i]["AgencyName"] + '</option>';
+                    if (@ViewBag.AgencyId == data[i]["AgencyID"]) {
+                        options = '<option value="' + data[i]["AgencyID"] + '" selected>' + data[i]["AgencyName"] + '</option>';
+                    }
+                    else {
+                        options = '<option value="' + data[i]["AgencyID"] + '" >' + data[i]["AgencyName"] + '</option>';
+                    }
                     $(".Agency").append(options);
                 }
             },
@@ -297,9 +335,16 @@
             success: function (data) {
                 console.log(data);
                 for (var i = 0; i < data.length; i++) {
-                    options = '<option value="' + data[i]["DistrictID"] + '">' + data[i]["DistrictName"] + '</option>';
-                    $(".District").append(options);
-                    $(".NativeDistrict").append(options);
+                    if (@ViewBag.PdId == data[i]["DistrictID"]) {
+                        console.log(data[i])
+                        options = '<option value="' + data[i]["DistrictID"] + ' "selected>' + data[i]["DistrictName"] + '</option>';
+                    }
+                    else {
+                        options = '<option value="' + data[i]["DistrictID"] + '">' + data[i]["DistrictName"] + '</option>';
+                    }
+                    console.log(@ViewBag.PdId);
+                    $(".PDID").append(options);
+
                 }
             },
             error: function (e) {
@@ -307,12 +352,81 @@
             }
         });
 
+         $.ajax({
+            url: "/Employee/GetAllDistrict",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                for (var i = 0; i < data.length; i++) {
+                    if (@ViewBag.NdId == data[i]["DistrictID"]) {
+                        options = '<option value="' + data[i]["DistrictID"] + ' "selected>' + data[i]["DistrictName"] + '</option>';
+                    }
+                    else {
+                        options = '<option value="' + data[i]["DistrictID"] + '">' + data[i]["DistrictName"] + '</option>';
+                    }
+                    $(".NDID").append(options);
+
+                }
+            },
+            error: function (e) {
+                alert(e.statusText);
+            }
+        });
+
+         var options = '';
+            $.ajax({
+                url: "/Employee/GetAllTalukas",
+                type: "GET",
+                data: { 'Empid': 0 },
+                dataType: "json",
+                success: function (data) {
+
+                    if (length > 0) {
+                        $(".PTID").empty();
+                    }
+                    for (var i = 0; i < data.length; i++) {
+                        if (@ViewBag.PtId == data[i]["TalukaID"]) {
+                            options = '<option value="' + data[i]["TalukaID"] + ' "selected>' + data[i]["TalukaName"] + '</option>';
+                        }
+                        else {
+                            options = '<option value="' + data[i]["TalukaID"] + '">' + data[i]["TalukaName"] + '</option>';
+                        }
+
+                        $(".PTID").append(options);
+                    }
+                },
+                error: function (e) {
+                    alert(e.statusText);
+                }
+            });
+
+         var options = '';
+            $.ajax({
+                url: "/Employee/GetAllTalukas",
+                type: "GET",
+                data: { 'Empid': 0 },
+                dataType: "json",
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        if (@ViewBag.NtId == data[i]["TalukaID"]) {
+                            options = '<option value="' + data[i]["TalukaID"] + ' "selected>' + data[i]["TalukaName"] + '</option>';
+                        }
+                        else {
+                            options = '<option value="' + data[i]["TalukaID"] + '">' + data[i]["TalukaName"] + '</option>';
+                        }
+                        $(".NTID").append(options);
+                    }
+                },
+                error: function (e) {
+                    alert(e.statusText);
+                }
+            });
 
 
-        $(".District").change(function () {
-            var DistrictID = $(".District").val();
-            alert(DistrictID);
-            var length = $(".PresentTaluka").length;
+        $(".PDID").change(function () {
+            var DistrictID = $(".PDID").val();
+            var length = $(".PDID").length;
             var options = '';
             $.ajax({
                 url: "/Employee/GetAllTalukas",
@@ -320,12 +434,14 @@
                 data: { 'Empid': DistrictID },
                 dataType: "json",
                 success: function (data) {
-                    if (length > 0) {
-                        $(".PresentTaluka").empty();
-                    }
                     for (var i = 0; i < data.length; i++) {
-                        options = '<option value="' + data[i]["TalukaID"] + '">' + data[i]["TalukaName"] + '</option>';
-                        $(".PresentTaluka").append(options);
+                        if (@ViewBag.PtId == data[i]["TalukaID"]) {
+                            options = '<option value="' + data[i]["TalukaID"] + ' "selected>' + data[i]["TalukaName"] + '</option>';
+                        }
+                        else {
+                            options = '<option value="' + data[i]["TalukaID"] + '">' + data[i]["TalukaName"] + '</option>';
+                        }
+                        $(".PTID").append(options);
                     }
                 },
                 error: function (e) {
@@ -335,11 +451,10 @@
         });
 
 
-        $(".NativeDistrict").change(function () {
-            var DistrictID = $(".NativeDistrict").val();
-            //alert(DistrictID); new SelectList((System.Collections.IEnumerable)ViewData["District"])
+        $(".NDID").change(function () {
+            var DistrictID = $(".NDID").val();
             var options = '';
-            var length = $(".NativeTaluka").length;
+            var length = $(".NDID").length;
             $.ajax({
                 url: "/Employee/GetAllTalukas",
                 type: "GET",
@@ -347,11 +462,17 @@
                 dataType: "json",
                 success: function (data) {
                     if (length > 0) {
-                        $(".NativeTaluka").empty();
+                        $(".NTID").empty();
                     }
                     for (var i = 0; i < data.length; i++) {
-                        options = '<option value="' + data[i]["TalukaID"] + '">' + data[i]["TalukaName"] + '</option>';
-                        $(".NativeTaluka").append(options);
+                        console.log("Hello")
+                        if (@ViewBag.NtId == data[i]["TalukaID"]) {
+                            options = '<option value="' + data[i]["TalukaID"] + ' "selected>' + data[i]["TalukaName"] + '</option>';
+                        }
+                        else {
+                            options = '<option value="' + data[i]["TalukaID"] + '">' + data[i]["TalukaName"] + '</option>';
+                        }
+                        $(".NTID").append(options);
                     }
                 },
                 error: function (e) {

@@ -9,10 +9,10 @@
     <link href="~/Css/Style.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="container-fluid-lg">
+    <div class="wrapper">
         <div class="row">
             @Html.Partial("Sidebar")
-            <div class="col-lg-10">
+            <div class="col-lg-10 col-md-10">
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
