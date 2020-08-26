@@ -22,12 +22,12 @@
                     </div>
                 </div>
 
-                <table class="detail">
+                <table class="detail table">
                     @foreach (var item in Model)
                     {
                         <tr>
                             <td>
-                                @Html.DisplayNameFor(model => model.FirstName)
+                                @Html.Label("First Name",new { @class = "Heading"})
                             </td>
 
                             <td>
@@ -35,7 +35,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayNameFor(model => model.MiddleName)
+                                @Html.Label("Middle Name", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -45,7 +45,7 @@
                         <tr>
 
                             <td>
-                                @Html.DisplayNameFor(model => model.LastName)
+                                @Html.Label("Last Name", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -53,7 +53,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayNameFor(model => model.Gender)
+                                @Html.Label("Gender", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -62,16 +62,15 @@
                         </tr>
                         <tr>
                             <td>
-                                @Html.DisplayNameFor(model => model.Email)
+                                @Html.Label("Email", new { @class = "Heading" })
                             </td>
-                            ]
 
                             <td>
                                 @Html.DisplayFor(model => item.Email)
                             </td>
 
                             <td>
-                                @Html.DisplayNameFor(model => model.PresentAddress)
+                                @Html.Label("Present Address", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -80,7 +79,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @Html.DisplayNameFor(model => model.PresentDistrictID)
+                                @Html.Label("Present DistrictID", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -88,7 +87,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayNameFor(model => model.PresentTalukaID)
+                                @Html.Label("Present TalukaID", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -97,7 +96,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @Html.DisplayNameFor(model => model.PresentPINCODE)
+                                @Html.Label("Present PINCODE", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -105,7 +104,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayNameFor(model => model.NativeAddress)
+                                @Html.Label("Native Address", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -115,7 +114,7 @@
                         <tr>
 
                             <td>
-                                @Html.DisplayNameFor(model => model.NativeDistrictID)
+                                @Html.Label("Native DitsrictID", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -123,7 +122,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayNameFor(model => model.NativeTalukaID)
+                                @Html.Label("Native TalukaID", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -132,7 +131,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @Html.DisplayNameFor(model => model.NativePINCODE)
+                                @Html.Label("Native PINCODE", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -140,7 +139,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayNameFor(model => model.PhoneNumber)
+                                @Html.Label("Phone Number", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -149,7 +148,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @Html.DisplayNameFor(model => model.AlternatePhoneNumber)
+                                @Html.Label("Alternate Phone Number", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -157,7 +156,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayNameFor(model => model.EmergencyContactNumber)
+                                @Html.Label("Emergency Contact Number", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -166,7 +165,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @Html.DisplayNameFor(model => model.EmergencyContactName)
+                                @Html.Label("Emergency Contact Name", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -174,7 +173,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayNameFor(model => model.DateOfBirth)
+                                @Html.Label("Date Of Birth", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -184,14 +183,14 @@
                         </tr>
                         <tr>
                             <td>
-                                @Html.DisplayNameFor(model => model.Dateofjoin)
+                                @Html.Label("Date of Join", new { @class = "Heading" })
                             </td>
                             <td>
                                 @Html.DisplayFor(model => item.Dateofjoin)
                             </td>
 
                             <td>
-                                @Html.DisplayNameFor(model => model.DateofRetirement)
+                                @Html.Label("Date Of Rertirement", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -200,14 +199,14 @@
                         </tr>
                         <tr>
                             <td>
-                                @Html.DisplayNameFor(model => model.DistrictJoiningDate)
+                                @Html.Label("Date of District Joining", new { @class = "Heading" })
                             </td>
                             <td>
                                 @Html.DisplayFor(model => item.DistrictJoiningDate)
                             </td>
 
                             <td>
-                                @Html.DisplayNameFor(model => model.EmployeeEntryinDistrict)
+                                @Html.Label("Employee Entry in Ditsrict", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -216,7 +215,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @Html.DisplayNameFor(model => model.EmployeeType)
+                                @Html.Label("Emergency Type", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -224,7 +223,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayNameFor(model => model.AgencyID)
+                                @Html.Label("Agency ID", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -233,7 +232,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @Html.DisplayNameFor(model => model.CreatedBy)
+                                @Html.Label("Created BY", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -241,7 +240,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayNameFor(model => model.CreatedDate)
+                                @Html.Label("Created Date", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -250,7 +249,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @Html.DisplayNameFor(model => model.UpdatedBy)
+                                @Html.Label("Updated By", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -258,7 +257,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayNameFor(model => model.UpdatedDate)
+                                @Html.Label("Updated Date", new { @class = "Heading" })
                             </td>
 
                             <td>
@@ -267,7 +266,7 @@
                         </tr>
                         <tr>
                             <td>
-                                @Html.DisplayNameFor(model => model.isActive)
+                                @Html.Label("IS Active", new { @class = "Heading" })
                             </td>
                             <td>
                                 @if ( item.isActive == false)

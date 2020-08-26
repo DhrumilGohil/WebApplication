@@ -14,265 +14,260 @@
 </head>
 <body>
     <div class="wrapper" style="border:0px solid;">
-        <div class="row">
-            @Html.Partial("Sidebar")
-            <div class="col-lg-10 col-md-10">
+        @Html.Partial("Sidebar")
 
-                @using (Html.BeginForm("EditEmp", "Employee"))
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @using (Html.BeginForm("EditEmp", "Employee"))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                    <div class="row justify-content-center" style="border:0px solid;">
-                        <div class="col-lg-12 d-block text-center">
-                            <h1 class="Header" style="border:0px solid;">Edit Employee</h1>
+            <div class="row justify-content-center" style="border:0px solid;">
+                <div class="col-lg-12 d-block text-center">
+                    <h1 class="Header" style="border:0px solid;">Edit Employee</h1>
+                </div>
+            </div>
+            <div class="form-box mt-5 pl-5">
+                @foreach(var item in Model) { 
+                    <div class="row">
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.FirstName, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                @Html.EditorFor(model => item.FirstName, new { htmlAttributes = new { PlaceHolder = "Enter First Name", @class = "form-control Fname" } })
+                                @Html.ValidationMessageFor(model => item.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.MiddleName, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                @Html.EditorFor(model => item.MiddleName, new { htmlAttributes = new { PlaceHolder = "Enter Middle Name", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => item.MiddleName, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                     </div>
-                    <div class="form-box mt-5 pl-5">
-                        @foreach (var item in Model)
-                        {
-                            <div class="row">
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.FirstName, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        @Html.EditorFor(model => item.FirstName, new { htmlAttributes = new { PlaceHolder = "Enter First Name", @class = "form-control Fname" } })
-                                        @Html.ValidationMessageFor(model => item.FirstName, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.MiddleName, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        @Html.EditorFor(model => item.MiddleName, new { htmlAttributes = new { PlaceHolder = "Enter Middle Name", @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => item.MiddleName, "", new { @class = "text-danger" })
-                                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.LastName, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                @Html.EditorFor(model => item.LastName, new { htmlAttributes = new { PlaceHolder = "Enter Last Name", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => item.LastName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.EmployeeType, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <select id="Emptype" class="Emptype form-control"></select>
+                                    @Html.ValidationMessageFor(model => item.EmployeeType, "", new { @class = "text-danger" })
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="row">
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.LastName, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        @Html.EditorFor(model => item.LastName, new { htmlAttributes = new { PlaceHolder = "Enter Last Name", @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => item.LastName, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.EmployeeType, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            <select id="Emptype" class="Emptype form-control"></select>
-                                            @Html.ValidationMessageFor(model => item.EmployeeType, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="row">
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.Email, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                @Html.EditorFor(model => item.Email, new { htmlAttributes = new { PlaceHolder = "Enter Email", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => item.Email, "", new { @class = "text-danger" })
                             </div>
-
-                            <div class="row">
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.Email, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        @Html.EditorFor(model => item.Email, new { htmlAttributes = new { PlaceHolder = "Enter Email", @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => item.Email, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.Gender, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        <select id="Gender" class="Gender form-control"></select>
-                                        @Html.ValidationMessageFor(model => item.Gender, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.Gender, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                <select id="Gender" class="Gender form-control"></select>
+                                @Html.ValidationMessageFor(model => item.Gender, "", new { @class = "text-danger" })
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="row">
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.PresentAddress, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        @Html.TextAreaFor(model => item.PresentAddress, new { @rows = "3", @cols = "10", PlaceHolder = "Enter Present Address", @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => item.PresentAddress, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.PresentDistrictID, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        <select id="PDID" class="PDID form-control"></select>
-                                        @Html.ValidationMessageFor(model => item.PresentDistrictID, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
+                    <div class="row">
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.PresentAddress, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                @Html.TextAreaFor(model => item.PresentAddress, new { @rows = "3", @cols = "10", PlaceHolder = "Enter Present Address", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => item.PresentAddress, "", new { @class = "text-danger" })
                             </div>
-
-                            <div class="row">
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.PresentTalukaID, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        <select id="PTID" class="PTID form-control"></select>
-                                        @Html.ValidationMessageFor(model => item.PresentTalukaID, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.PresentPINCODE, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        @Html.EditorFor(model => item.PresentPINCODE, new { htmlAttributes = new { PlaceHolder = "Enter Present PINCODE", @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => item.PresentPINCODE, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.PresentDistrictID, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                <select id="PDID" class="PDID form-control"></select>
+                                @Html.ValidationMessageFor(model => item.PresentDistrictID, "", new { @class = "text-danger" })
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="row">
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.NativeAddress, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        @Html.TextAreaFor(model => item.NativeAddress, new { @rows = "3", @cols = "10", PlaceHolder = "Enter Native Address", @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => item.NativeAddress, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.NativeDistrictID, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        <select id="NDID" class="NDID form-control"></select>
-                                        @Html.ValidationMessageFor(model => item.NativeDistrictID, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
+                    <div class="row">
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.PresentTalukaID, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                <select id="PTID" class="PTID form-control"></select>
+                                @Html.ValidationMessageFor(model => item.PresentTalukaID, "", new { @class = "text-danger" })
                             </div>
-
-                            <div class="row">
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.NativeTalukaID, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        <select id="NTID" class="NTID form-control"></select>
-                                        @Html.ValidationMessageFor(model => item.NativeTalukaID, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.NativePINCODE, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        @Html.EditorFor(model => item.PresentPINCODE, new { htmlAttributes = new { PlaceHolder = "Enter Native PINCODE", @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => item.PresentPINCODE, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.PresentPINCODE, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                @Html.EditorFor(model => item.PresentPINCODE, new { htmlAttributes = new { PlaceHolder = "Enter Present PINCODE", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => item.PresentPINCODE, "", new { @class = "text-danger" })
                             </div>
+                        </div>
+                    </div>
 
-
-
-
-                            <div class="row">
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.PhoneNumber, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        @Html.EditorFor(model => item.PhoneNumber, new { htmlAttributes = new { PlaceHolder = "Enter Phone Number", @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => item.PhoneNumber, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.AlternatePhoneNumber, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        @Html.EditorFor(model => item.AlternatePhoneNumber, new { htmlAttributes = new { PlaceHolder = "Enter Alternate Number", @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => item.AlternatePhoneNumber, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
+                    <div class="row">
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.NativeAddress, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                @Html.TextAreaFor(model => item.NativeAddress, new { @rows = "3", @cols = "10", PlaceHolder = "Enter Native Address", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => item.NativeAddress, "", new { @class = "text-danger" })
                             </div>
-
-                            <div class="row">
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.EmergencyContactNumber, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        @Html.EditorFor(model => item.EmergencyContactNumber, new { htmlAttributes = new { PlaceHolder = "Emergency Phone Number", @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => item.EmergencyContactNumber, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.EmergencyContactName, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        @Html.EditorFor(model => item.EmergencyContactName, new { htmlAttributes = new { PlaceHolder = "Emergency ContactName", @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => item.EmergencyContactName, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.NativeDistrictID, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                <select id="NDID" class="NDID form-control"></select>
+                                @Html.ValidationMessageFor(model => item.NativeDistrictID, "", new { @class = "text-danger" })
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="row">
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.DateOfBirth, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        @Html.TextBoxFor(model => item.DateOfBirth, new { @type = "date", @class = "form-control DOB" })
-                                        @Html.ValidationMessageFor(model => item.DateOfBirth, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.Dateofjoin, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        @Html.TextBoxFor(model => item.Dateofjoin, new { @type = "date", @class = "form-control DOJ datepicker" })
-                                        @Html.ValidationMessageFor(model => item.Dateofjoin, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
+                    <div class="row">
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.NativeTalukaID, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                <select id="NTID" class="NTID form-control"></select>
+                                @Html.ValidationMessageFor(model => item.NativeTalukaID, "", new { @class = "text-danger" })
                             </div>
-
-                            <div class="row">
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.DateofRetirement, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        @Html.TextBoxFor(model => item.DateofRetirement, new { @class = "form-control DOR datepicker" })
-                                        @Html.ValidationMessageFor(model => item.DateofRetirement, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.DistrictJoiningDate, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        @Html.TextBoxFor(model => item.DistrictJoiningDate, new { @type = "date", @class = "form-control DODJ datepicker" })
-                                        @Html.ValidationMessageFor(model => item.DistrictJoiningDate, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.NativePINCODE, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                @Html.EditorFor(model => item.PresentPINCODE, new { htmlAttributes = new { PlaceHolder = "Enter Native PINCODE", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => item.PresentPINCODE, "", new { @class = "text-danger" })
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="row">
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.EmployeeEntryinDistrict, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        @Html.DropDownList("EmployeeEntryinDistrict", new SelectList(Enum.GetValues(typeof(EmployeeEntry))), "Employee Entry", new { @class = "form-control EmpEntry" })
-                                        @Html.ValidationMessageFor(model => item.EmployeeEntryinDistrict, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.AgencyID, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        @Html.DropDownList("AgencyID", Enumerable.Empty<SelectListItem>(), "AgencyID", new { PlaceHolder = "Agency ID", @class = "form-control Agency" })
-                                        @Html.ValidationMessageFor(model => item.AgencyID, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
+
+
+
+                    <div class="row">
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.PhoneNumber, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                @Html.EditorFor(model => item.PhoneNumber, new { htmlAttributes = new { PlaceHolder = "Enter Phone Number", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => item.PhoneNumber, "", new { @class = "text-danger" })
                             </div>
-
-                            <div class="row">
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.CreatedBy, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        @Html.EditorFor(model => item.CreatedBy, new { htmlAttributes = new { PlaceHolder = "Created By", @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => item.CreatedBy, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mt-5">
-                                    @Html.LabelFor(model => item.UpdatedBy, new { @class = "ml-1 font-weight-bold" })
-                                    <div class="form-group">
-                                        @Html.EditorFor(model => item.UpdatedBy, new { htmlAttributes = new { placeholder = "Updated By", @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => item.UpdatedBy, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.AlternatePhoneNumber, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                @Html.EditorFor(model => item.AlternatePhoneNumber, new { htmlAttributes = new { PlaceHolder = "Enter Alternate Number", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => item.AlternatePhoneNumber, "", new { @class = "text-danger" })
                             </div>
-                        }
+                        </div>
+                    </div>
 
-                        <div class="submit text-center mt-5">
-                            <button type="submit" class="btn btn-primary font-weight-bold p-2 px-5 mx-auto">Submit</button>
+                    <div class="row">
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.EmergencyContactNumber, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                @Html.EditorFor(model => item.EmergencyContactNumber, new { htmlAttributes = new { PlaceHolder = "Emergency Phone Number", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => item.EmergencyContactNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.EmergencyContactName, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                @Html.EditorFor(model => item.EmergencyContactName, new { htmlAttributes = new { PlaceHolder = "Emergency ContactName", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => item.EmergencyContactName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.DateOfBirth, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                @Html.EditorFor(model => item.DateOfBirth, new { @class = "form-control DOB" })
+                                @Html.ValidationMessageFor(model => item.DateOfBirth, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.Dateofjoin, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                @Html.TextBoxFor(model => item.Dateofjoin, new { @type = "date", @class = "form-control DOJ datepicker" })
+                                @Html.ValidationMessageFor(model => item.Dateofjoin, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.DateofRetirement, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                @Html.TextBoxFor(model => item.DateofRetirement, new { @class = "form-control DOR datepicker" })
+                                @Html.ValidationMessageFor(model => item.DateofRetirement, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.DistrictJoiningDate, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                @Html.TextBoxFor(model => item.DistrictJoiningDate, new { @type = "date", @class = "form-control DODJ datepicker" })
+                                @Html.ValidationMessageFor(model => item.DistrictJoiningDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.EmployeeEntryinDistrict, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                @Html.DropDownList("EmployeeEntryinDistrict", new SelectList(Enum.GetValues(typeof(EmployeeEntry))), "Employee Entry", new { @class = "form-control EmpEntry" })
+                                @Html.ValidationMessageFor(model => item.EmployeeEntryinDistrict, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.AgencyID, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                @Html.DropDownList("AgencyID", Enumerable.Empty<SelectListItem>(), "AgencyID", new { PlaceHolder = "Agency ID", @class = "form-control Agency" })
+                                @Html.ValidationMessageFor(model => item.AgencyID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.CreatedBy, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                @Html.EditorFor(model => item.CreatedBy, new { htmlAttributes = new { PlaceHolder = "Created By", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => item.CreatedBy, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mt-5">
+                            @Html.LabelFor(model => item.UpdatedBy, new { @class = "ml-1 font-weight-bold" })
+                            <div class="form-group">
+                                @Html.EditorFor(model => item.UpdatedBy, new { htmlAttributes = new { placeholder = "Updated By", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => item.UpdatedBy, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                     </div>
                 }
+                    <div class="submit text-center mt-5">
+                        <button type="submit" class="btn btn-primary font-weight-bold p-2 px-5 mx-auto">Submit</button>
+                    </div>
             </div>
-        </div>
+        }
     </div>
+
 </body>
 </html>
 <script src="~/Scripts/jquery-3.5.1.min.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $(".Fname").datepicker();
+       
         var options = "";
         if ("@ViewBag.Gender" == "@Gender.Male") {
             options = '<option value="' + 0 + '" selected>' + "@Gender.Male" + '</option>';

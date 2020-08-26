@@ -91,7 +91,7 @@ namespace EmployeeForm.Models
         [Display(Name = "Date Of Retirement")]
         public System.DateTime DateofRetirement { get; set; }
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         [Display(Name = "District Join Date")]
         [Required(ErrorMessage = "District Join Date Birth is required.")]        
         public System.DateTime DistrictJoiningDate { get; set; }

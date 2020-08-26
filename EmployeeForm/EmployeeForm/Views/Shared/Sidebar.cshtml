@@ -1,30 +1,42 @@
-﻿<div class="col-lg-2 sidebar col-md-2 pb-4" style="border:1px solid;text-align:center;">
-    <nav class="navbar">
-        <ul class="navbar-nav sidemenu">
+﻿<link href="~/fonts/font-awesome.min.css" rel="stylesheet" />
+<div class="col-lg-2 p-0">
 
-            <li class="nav-item mt-5 pb-2 Admin">
-                <a href="@Url.Action("ShowAllEmployee")">Admin Panel</a>
-                <hr class="Divider">
-            </li>
-            <li class="nav-item mt-5">
-                <a href="@Url.Action("ShowAllEmployee")">Employee List</a>
-            </li>
-            <li class="nav-item mt-5">
-                <a href="@Url.Action("ShowListTaluka")">Taluka List</a>
-            </li>
-            <li class="nav-item mt-5">
-                <a href="@Url.Action("ShowListDistrict")">District List</a>
-            </li>
-            <li class="nav-item mt-5">
-                <a href="@Url.Action("ShowAllEmployee")">Exams List</a>
-            </li>
-            <li class="nav-item mt-5">
-                <a href="@Url.Action("ShowAllEmployee")">Employee Exam List</a>
-            </li>
-            <li class="nav-item mt-5">
-                <a href="@Url.Action("GetRetireEmp")">Get Report</a>
-            </li>
-        </ul>
-    </nav>
+  
+    <ul class="navbar-nav sidebar text-center">
+
+        <li class="nav-item mt-5 pb-2 Admin">
+            <a href="@Url.Action("ShowAllEmployee")" class="nav-link">
+                <span class="admin">Admin Panel</span>
+            </a>
+            <hr class="Divider">
+        </li>
+        <li class="nav-item mt-5">
+            <a href="@Url.Action("ShowAllEmployee")" class="nav-link">
+                <span>Employee List</span>
+            </a>
+        </li>
+        <li class="nav-item mt-5">
+            <a href="@Url.Action("ShowListTaluka")" class="nav-link">
+                <span>Taluka List</span>
+            </a>
+        </li>
+        <li class="nav-item mt-5">
+            <a href="@Url.Action("ShowListDistrict")" class="nav-link">
+                <span>District List</span>
+            </a>
+        </li>
+        <li class="nav-item mt-5">
+            <a href="@Url.Action("ShowAllEmployee")" class="nav-link">
+                <span>Exams List</span>
+            </a>
+        </li>
+        <li class="nav-item mt-5">
+            <a href="@Url.Action("ShowAllEmployee")" class="nav-link">
+                <span>Employee Exam List</span>
+            </a>
+        </li>
+        <li class="nav-item mt-5">
+            <a href="@Url.Action("GetRetireEmp")" class="nav-link"><span>Get Report</span></a>
+        </li>
+    </ul>
 </div>
-
