@@ -39,7 +39,7 @@
                 alert("Please Select Date")
             }
             else {
-            var src = "../Reports/EmployeeAspx.aspx?"; 
+                var src = "../Reports/EmployeeRetirementReport.aspx?"; 
             src = src + "Searchdate=" + date;
             var iframe = '<iframe id="reportFrame" width="100%" height="800px" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';  
                 $(".ShowReport").html(iframe);

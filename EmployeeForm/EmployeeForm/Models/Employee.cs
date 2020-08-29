@@ -41,10 +41,14 @@ namespace EmployeeForm.Models
         public int PresentDistrictID { get; set; }
         [Required(ErrorMessage = "Present TalukaID is required.")]
         [Display(Name = "Present TalukaID")]
+
+        public string DistrictName { get; set; }
         public int PresentTalukaID { get; set; }
         [DataType(DataType.PostalCode)]
         [Required(ErrorMessage = "Present Pincode is required.")]
         [Display(Name = "Present Pincode")]
+
+        public string TalukaName { get; set; }
         public int PresentPINCODE { get; set; }
 
         [Display(Name = "Native Address")]
@@ -76,22 +80,17 @@ namespace EmployeeForm.Models
         [Required(ErrorMessage = "Enter Emergency Contact Name")]
         [Display(Name = "Emergency Contact Name")]
         public string EmergencyContactName { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        [Required(ErrorMessage = "Date of Birth is required.")]
-        [DataType(DataType.Date)]        
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:YYYY-MM-DD hh:mm:ss}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "Date of Birth is required.")]        
         [Display(Name = "Date Of Birth")]
         public System.DateTime DateOfBirth { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        [DataType(DataType.Date)]
         [Display(Name = "Date Of Join")]
         [Required(ErrorMessage = "Date of join is required.")]
         public System.DateTime Dateofjoin { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        [DataType(DataType.Date)]
+
         [Display(Name = "Date Of Retirement")]
         public System.DateTime DateofRetirement { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        [DataType(DataType.DateTime)]
         [Display(Name = "District Join Date")]
         [Required(ErrorMessage = "District Join Date Birth is required.")]        
         public System.DateTime DistrictJoiningDate { get; set; }

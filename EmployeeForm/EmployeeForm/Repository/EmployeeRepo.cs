@@ -15,7 +15,7 @@ namespace EmployeeForm.Repository
 {
     public class EmpRepository
     {
-        public List<Employee> GetAllEmployee([Optional]int EmployeeID)
+        public List<Employee> GetAllEmployee(int? EmployeeID)
         {
             string constr = ConfigurationManager.ConnectionStrings["EmpConnect"].ConnectionString;
             SqlConnection con = new SqlConnection(constr);
@@ -24,52 +24,103 @@ namespace EmployeeForm.Repository
             SqlCommand com = new SqlCommand("GetEmployees", con);
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.AddWithValue("@EmployeeID", EmployeeID);
-            SqlDataAdapter da = new SqlDataAdapter(com);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-
-            foreach (DataRow dr in dt.Rows)
-            {
+            SqlDataReader read = com.ExecuteReader();
+            while (read.Read()) {
                 EmpList.Add(
+                new Employee()
+                {
+                    EmployeeID = Convert.ToInt32(read["EmployeeID"]),
+                    FirstName = Convert.ToString(read["FirstName"]),
+                    MiddleName = Convert.ToString(read["MiddleName"]),
+                    LastName = Convert.ToString(read["LastName"]),
+                    Gender = (read["Gender"].ToString()),
+                    Email = Convert.ToString(read["Email"]),
+                    PresentAddress = Convert.ToString(read["PresentAddress"]),
+                    PresentDistrictID = Convert.ToInt32(read["PresentDistrictID"]),
+                    PresentTalukaID = Convert.ToInt32(read["PresentTalukaID"]),
+                    PresentPINCODE = Convert.ToInt32(read["PresentPINCODE"]),
+                    NativeAddress = Convert.ToString(read["NativeAddress"]),
+                    NativeDistrictID = Convert.ToInt32(read["NativeDistrictID"]),
+                    NativeTalukaID = Convert.ToInt32(read["NativeTalukaID"]),
+                    NativePINCODE = Convert.ToInt32(read["NativePINCODE"]),
+                    PhoneNumber = Convert.ToString(read["PhoneNumber"]),
+                    AlternatePhoneNumber = Convert.ToString(read["AlternatePhoneNumber"]),
+                    EmergencyContactNumber = Convert.ToString(read["EmergencyContactNumber"]),
+                    EmergencyContactName = Convert.ToString(read["EmergencyContactName"]),
+                    DateOfBirth = Convert.ToDateTime(read["DateOfBirth"]),
+                    Dateofjoin = Convert.ToDateTime(read["DateOfJoin"]),
+                    DateofRetirement = Convert.ToDateTime(read["DateofRetirement"]),
+                    DistrictJoiningDate = Convert.ToDateTime(read["DistrictJoiningDate"]),
+                    EmployeeEntryinDistrict = Convert.ToString(read["EmployeeEntryinDistrict"]),
+                    EmployeeType = Convert.ToString(read["EmployeeType"]),
+                    AgencyID = Convert.ToInt32(read["AgencyID"]),
+                    CreatedBy = Convert.ToInt32(read["CreatedBy"]),
+                    CreatedDate = Convert.ToDateTime(read["CreatedDate"]),
+                    UpdatedBy = Convert.ToInt32(read["UpdatedBy"]),
+                    UpdatedDate = Convert.ToDateTime(read["UpdatedDate"]),
+                    isActive = Convert.ToBoolean(read["isActive"]),
+                }
+                );
 
-                    new Employee()
-                    {
-                        EmployeeID = Convert.ToInt32(dr["EmployeeID"]),
-                        FirstName = Convert.ToString(dr["FirstName"]),
-                        MiddleName = Convert.ToString(dr["MiddleName"]),
-                        LastName = Convert.ToString(dr["LastName"]),
-                        Gender = (dr["Gender"].ToString()),
-                        Email = Convert.ToString(dr["Email"]),
-                        PresentAddress = Convert.ToString(dr["PresentAddress"]),
-                        PresentDistrictID = Convert.ToInt32(dr["PresentDistrictID"]),
-                        PresentTalukaID = Convert.ToInt32(dr["PresentTalukaID"]),
-                        PresentPINCODE = Convert.ToInt32(dr["PresentPINCODE"]),
-                        NativeAddress = Convert.ToString(dr["NativeAddress"]),
-                        NativeDistrictID = Convert.ToInt32(dr["NativeDistrictID"]),
-                        NativeTalukaID = Convert.ToInt32(dr["NativeTalukaID"]),
-                        NativePINCODE = Convert.ToInt32(dr["NativePINCODE"]),
-                        PhoneNumber = Convert.ToString(dr["PhoneNumber"]),
-                        AlternatePhoneNumber = Convert.ToString(dr["AlternatePhoneNumber"]),
-                        EmergencyContactNumber = Convert.ToString(dr["EmergencyContactNumber"]),
-                        EmergencyContactName = Convert.ToString(dr["EmergencyContactName"]),
-                        DateOfBirth = Convert.ToDateTime(dr["DateOfBirth"]),
-                        Dateofjoin = Convert.ToDateTime(dr["DateOfJoin"]),
-                        DateofRetirement = Convert.ToDateTime(dr["DateofRetirement"]),
-                        DistrictJoiningDate = Convert.ToDateTime(dr["DistrictJoiningDate"]),
-                        EmployeeEntryinDistrict = Convert.ToString(dr["EmployeeEntryinDistrict"]),
-                        EmployeeType = Convert.ToString(dr["EmployeeType"]),
-                        AgencyID = Convert.ToInt32(dr["AgencyID"]),
-                        CreatedBy = Convert.ToInt32(dr["CreatedBy"]),
-                        CreatedDate = Convert.ToDateTime(dr["CreatedDate"]),
-                        UpdatedBy = Convert.ToInt32(dr["UpdatedBy"]),
-                        UpdatedDate = Convert.ToDateTime(dr["UpdatedDate"]),
-                        isActive = Convert.ToBoolean(dr["isActive"]),
-                    }
+                   
 
-                    );
             }
 
            return EmpList;
+
+
+        }
+
+        public Employee GetAllemployee(int EmployeeID)
+        {
+            string constr = ConfigurationManager.ConnectionStrings["EmpConnect"].ConnectionString;
+            SqlConnection con = new SqlConnection(constr);
+            con.Open();
+            Employee EmpList = new Employee();
+            SqlCommand com = new SqlCommand("GetEmployees", con);
+            com.CommandType = CommandType.StoredProcedure;
+            com.Parameters.AddWithValue("@EmployeeID", EmployeeID);
+            SqlDataReader read = com.ExecuteReader();
+            while (read.Read())
+            {
+
+                EmpList.EmployeeID = Convert.ToInt32(read["EmployeeID"]);
+                EmpList.FirstName = Convert.ToString(read["FirstName"]);
+                EmpList.MiddleName = Convert.ToString(read["MiddleName"]);
+                EmpList.LastName = Convert.ToString(read["LastName"]);
+                EmpList.Gender = (read["Gender"].ToString());
+                EmpList.Email = Convert.ToString(read["Email"]);
+                EmpList.PresentAddress = Convert.ToString(read["PresentAddress"]);
+                EmpList.PresentDistrictID = Convert.ToInt32(read["PresentDistrictID"]);
+                EmpList.PresentTalukaID = Convert.ToInt32(read["PresentTalukaID"]);
+                EmpList.PresentPINCODE = Convert.ToInt32(read["PresentPINCODE"]);
+                EmpList.NativeAddress = Convert.ToString(read["NativeAddress"]);
+                EmpList.NativeDistrictID = Convert.ToInt32(read["NativeDistrictID"]);
+                EmpList.NativeTalukaID = Convert.ToInt32(read["NativeTalukaID"]);
+                EmpList.NativePINCODE = Convert.ToInt32(read["NativePINCODE"]);
+                EmpList.PhoneNumber = Convert.ToString(read["PhoneNumber"]);
+                EmpList.AlternatePhoneNumber = Convert.ToString(read["AlternatePhoneNumber"]);
+                EmpList.EmergencyContactNumber = Convert.ToString(read["EmergencyContactNumber"]);
+                EmpList.EmergencyContactName = Convert.ToString(read["EmergencyContactName"]);
+                EmpList.DateOfBirth = Convert.ToDateTime(read["DateOfBirth"]);
+                EmpList.Dateofjoin = Convert.ToDateTime(read["DateOfJoin"]);
+                EmpList.DateofRetirement = Convert.ToDateTime(read["DateofRetirement"]);
+                EmpList.DistrictJoiningDate = Convert.ToDateTime(read["DistrictJoiningDate"]);
+                EmpList.EmployeeEntryinDistrict = Convert.ToString(read["EmployeeEntryinDistrict"]);
+                EmpList.EmployeeType = Convert.ToString(read["EmployeeType"]);
+                EmpList.AgencyID = Convert.ToInt32(read["AgencyID"]);
+                EmpList.CreatedBy = Convert.ToInt32(read["CreatedBy"]);
+                EmpList.CreatedDate = Convert.ToDateTime(read["CreatedDate"]);
+                EmpList.UpdatedBy = Convert.ToInt32(read["UpdatedBy"]);
+                EmpList.UpdatedDate = Convert.ToDateTime(read["UpdatedDate"]);
+                EmpList.isActive = Convert.ToBoolean(read["isActive"]);
+                
+
+
+
+            }
+
+            return EmpList;
 
 
         }

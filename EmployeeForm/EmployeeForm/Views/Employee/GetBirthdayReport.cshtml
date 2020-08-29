@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>List of agency</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale = 1.0">
+
+    <link href="~/Css/Style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="row text-center">
+            @Html.Partial("Sidebar")
+            <div class="col-lg-10 col-md-10">
+                <form>
+                    <div class="form-group">
+                        <div class="col-lg-4">
+                            <label for="Month" class="font-weight-bold">Select Month</label>
+                            
+                            <select class="month form-control">
+                                <option class="active">Select Month</option>
+                                <option>January</option>
+                                <option>February</option>
+                                <option>March</option>
+                                <option>April</option>
+                                <option>May</option>
+                                <option>June</option>
+                                <option>July</option>
+                                <option>August</option>
+                                <option>September</option>
+                                <option>October</option>
+                                <option>November</option>
+                                <option>December</option>
+
+                            </select>
+                            <button class="btn btn-primary BODbtn">Search</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="ShowReport"></div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".BODbtn").on("click", function () {
+            alert($(".month").val())
+            var month = $(".month").val();
+            if (month == "") {
+                alert("Please Select Date")
+            }
+            else {
+                var src = "../Reports/BirthdayReport.aspx?";
+            src = src + "Searchmonth=" + month;
+            var iframe = '<iframe id="reportFrame" width="100%" height="800px" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+                $(".ShowReport").html(iframe);
+            }
+        });
+
+    });
+
+</script>
+

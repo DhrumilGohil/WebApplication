@@ -23,13 +23,18 @@ namespace EmployeeForm.Controllers
         {
             return View();
         }
+
+        public ActionResult GetBirthdayReport()
+        {
+            return View();
+        }
         // GET: Employee
         public ActionResult ShowAllEmployee(int? page, string Search)
         {
             EmpRepository EmpRepo = new EmpRepository();
             ModelState.Clear();
             List<Employee> test = new List<Employee>();
-            test = EmpRepo.GetAllEmployee(0).ToList();
+            test = EmpRepo.GetAllEmployee(0);
             if (Search != null) {
                 test = test.Where(x => x.FirstName.Contains(Search) || x.LastName.Contains(Search)).ToList();
             }
@@ -79,16 +84,16 @@ namespace EmployeeForm.Controllers
         
         {
             EmpRepository Emprepo = new EmpRepository();
-            List<Employee> EditEmployee = new List<Employee>();
-            EditEmployee = Emprepo.GetAllEmployee(id);
-            ViewBag.PdId = EditEmployee[0].PresentDistrictID;
-            ViewBag.PtId = EditEmployee[0].PresentTalukaID;
-            ViewBag.NdId = EditEmployee[0].NativeDistrictID;
-            ViewBag.NtId = EditEmployee[0].NativeTalukaID;
-            ViewBag.AgencyId = EditEmployee[0].AgencyID;
-            ViewBag.Gender = EditEmployee[0].Gender;
-            ViewBag.EmployeeType = EditEmployee[0].EmployeeType;
-            ViewBag.Doj = EditEmployee[0].Dateofjoin;
+            Employee EditEmployee = new Employee();
+            EditEmployee = Emprepo.GetAllemployee(id);
+            ViewBag.PdId = EditEmployee.PresentDistrictID;
+            ViewBag.PtId = EditEmployee.PresentTalukaID;
+            ViewBag.NdId = EditEmployee.NativeDistrictID;
+            ViewBag.NtId = EditEmployee.NativeTalukaID;
+            ViewBag.AgencyId = EditEmployee.AgencyID;
+            ViewBag.Gender = EditEmployee.Gender;
+            ViewBag.EmployeeType = EditEmployee.EmployeeType;
+            ViewBag.Doj = EditEmployee.Dateofjoin;
             return View(EditEmployee);
         }
        
@@ -147,14 +152,14 @@ namespace EmployeeForm.Controllers
         public JsonResult GetAllEmployeeName()
         {
             EmpRepository Emprepo = new EmpRepository();
-            List<Employee> NameEmployee = Emprepo.GetAllEmployee(0).ToList();
+            List<Employee> NameEmployee = Emprepo.GetAllEmployee(0);
             return Json(NameEmployee, JsonRequestBehavior.AllowGet);
         }
        public ActionResult DetailS(int id)
         {
             EmpRepository Emprepo = new EmpRepository();
             ModelState.Clear();
-            return View(Emprepo.GetAllEmployee(id));
+            return View(Emprepo.GetAllemployee(id));
         }
 
         public ActionResult EmpActive(int id)
@@ -184,7 +189,7 @@ namespace EmployeeForm.Controllers
         {
             EmpRepository Emprepo = new EmpRepository();
             List<Employee> test = new List<Employee>();
-            test = Emprepo.GetAllEmployee();
+            test = Emprepo.GetAllEmployee(0);
             return View(test.Where(x => x.FirstName.Contains(Search)).ToList());
         }
 

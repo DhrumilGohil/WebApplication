@@ -154,6 +154,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="EmployeeBODDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeBODDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -170,6 +175,13 @@
     </Compile>
     <Compile Include="Reports\EmployeeAspx.aspx.designer.cs">
       <DependentUpon>EmployeeAspx.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\BirthdayReport.aspx.cs">
+      <DependentUpon>BirthdayReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\BirthdayReport.aspx.designer.cs">
+      <DependentUpon>BirthdayReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Repository\EmployeeRepo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
@@ -265,6 +277,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Reports\EmployeeAspx.aspx" />
+    <Content Include="Reports\BirthdayReport.aspx" />
     <Content Include="Scripts\alertify.js" />
     <Content Include="Scripts\alertify.min.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
@@ -282,6 +295,17 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="EmployeeBODDataSet.xsc">
+      <DependentUpon>EmployeeBODDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="EmployeeBODDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmployeeBODDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="EmployeeBODDataSet.xss">
+      <DependentUpon>EmployeeBODDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="EmployeeDataSet1.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>EmployeeDataSet1.Designer.cs</LastGenOutput>
@@ -541,6 +565,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Employee\GetBirthdayReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -552,7 +577,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reports\EmployeeReport.rdlc" />
+    <EmbeddedResource Include="Reports\EmployeeRetirementReport.rdlc" />
+    <EmbeddedResource Include="Reports\BirthdateReport.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
